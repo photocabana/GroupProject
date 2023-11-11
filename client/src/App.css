@@ -1,0 +1,32 @@
+/* Global */
+:root {
+    --orange-web: #f9a826ff;
+    --nyanza: #F7FEE7;
+    --wenge: #605856ff;
+    --powder-blue: #acbed8ff;
+    --dodger-blue: #0496ffff;
+
+    --box-shadow-1: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+/* Landing */
+#--landing-logo {
+    width: 25%;
+}
+
+#--landing-container {
+    justify-content: center;
+}
+
+#--landing-form {
+    max-height: 350px;
+    max-width: 350px;
+    margin-top: 2rem;
+    width: 15%;
+}
+
+
+
+/* login/reg container */
+
+
