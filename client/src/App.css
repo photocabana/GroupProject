@@ -25,8 +25,58 @@
     width: 15%;
 }
 
-
-
 /* login/reg container */
 
+/* Music Player  */
+#music-player-container {
+    padding: 1%;
+    flex-direction: row;
+    align-items: start;
+    height: 100%;
+}
 
+#playlists-container {
+    background: var(--nyanza);
+    flex: 1 1 auto;
+    max-width: 25%;
+    min-width: 300px;
+    /* height: 500px; */
+}
+.playlists-operations {
+    width: 100%;
+}
+
+#playlists-heading{
+    width: auto;
+}
+
+#playlists-create {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.music-player-graphic-container {
+    position: relative;
+    flex: 1 1 auto;
+    max-width: 50%;
+}
+
+.music-player-graphic-container img{
+    width:75%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    min-width: 300px;
+}
+
+.music-player-album-container {
+    position: absolute;
+    height: 40%;
+    width: 20%;
+    top: 40%;
+    left: 40%;
+    transform: translate(-68%, -50%);
+    background-color: var(--nyanza);
+    
+}
