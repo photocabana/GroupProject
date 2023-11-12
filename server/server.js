@@ -4,12 +4,20 @@ const app = express();
 const port = 8000;
 const cors = require('cors');
 const path = require('path')
-app.use();
+// app.use();
 app.use("/uploads", express.static('uploads'))
 
 //!config connection
+require('dotenv').config()
 require('./config/mongoose.config');
 app.use(express.json(), express.urlencoded({extended:true}));
+app.use(cors({credentials:true, origin:'http://localhost:5173'}))
+// app.use(cookieParser())
+
 //!routes connection
+const userRoutes = require("./routes/user.routes")
+userRoutes(app)
 
 app.listen(port, ()=> console.log("The Server is listening on port " + port));
+
+
