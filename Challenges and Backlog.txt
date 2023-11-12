@@ -1,0 +1,18 @@
+(Anthony) Challenge 1 - Responsively positioning the items inside of the music-player-graphic.
+
+Positioning the dynamic items was different than how I've previously positioned things. And that's by virtue of how I sized and positioned the 2 elements on the main page. 
+
+The key was to use flex: 1 1 auto on both the .music-player-graphic-container, and the #playlists-container.
+
+By setting these properties on both .music-player-graphic-container and #playlists-container, I'm ensuring that these elements will equally share the available space in their parent container. They will grow and shrink together as the viewport size changes, maintaining their relative sizes.
+
+This is crucial for the responsiveness of the .music-player-album-container because its size and position are set relative to its parent, .music-player-graphic-container (ie, all of the percentages). As the graphic container resizes with the viewport, the album container also resizes and repositions accordingly, maintaining its relative size and position.
+
+In addition, by ensuring that the #playlists-container and .music-player-graphic-container share space equally, you're improving the overall responsiveness of the layout. No matter the viewport size, these elements will adjust their sizes to fit without overflowing or leaving unused space.
+
+NOTE: more work on responsiveness is needed as the page breaks at less than 800px width.
+
+
+Backlog 
+
+(Anthony)Improve responsiveness for all pages.

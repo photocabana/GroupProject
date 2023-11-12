@@ -1,6 +1,7 @@
 import React from 'react'
 import logoOne from '../assets/cantaloupe_music_logo_black.png';
 
+
 const Nav = () => {
   return (
     <div className='--nav-bar'>
