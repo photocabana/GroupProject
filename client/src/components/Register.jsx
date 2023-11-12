@@ -3,7 +3,6 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
-    const navigate = useNavigate()
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -13,8 +12,9 @@ const Register = () => {
         confirmPassword: ""
         // role: ""
     })
-
+    
     const [errors, setErrors] = useState({})
+    const navigate = useNavigate()
 
     const changeHandler = (e) => {
         setUser({... user, [e.target.name]:e.target.value})

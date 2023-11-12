@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const SECRET = process.env.SECRET_KEY
 // Secret Key keeps this from being hacked
 
+
 module.exports = {
 
 // Where User Registers

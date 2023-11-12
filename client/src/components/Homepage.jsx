@@ -10,29 +10,29 @@ const Homepage = (props) => {
     const [chatHistory, setChatHistory] = useState([])
     const navigate = useNavigate()
 
+    // useEffect(() => {
+    //     socket.on('new-user-joined', (data) => {
+    //     console.log(data)
+    //     setUsers(data)
+    //     })
+    //     socket.on('send-message-to-all-clients', (data) => {
+    //     setMessages((prevMessages) => [...prevMessages, data])
+    //     })
+    //     socket.on('chat-history', (history) => {
+    //     setChatHistory(history)
+    //     })
+    // }, [])
+
     const logoutUser = () => {
         axios.post('http://localhost:8000/api/logoutUser', {}, {withCredentials:true})
             .then((res) => {
-                console.log(res.data)
+                console.log(res)
                 navigate('/')
             })
             .catch((err) => {
                 console.log(err);
             })
     }
-
-    useEffect(() => {
-        socket.on('new-user-joined', (data) => {
-        console.log(data)
-        setUsers(data)
-        })
-        socket.on('send-message-to-all-clients', (data) => {
-        setMessages((prevMessages) => [...prevMessages, data])
-        })
-        socket.on('chat-history', (history) => {
-        setChatHistory(history)
-        })
-    }, [])
 
     const sendMessage = (e) => {
         e.preventDefault()

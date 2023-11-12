@@ -8,17 +8,28 @@ const Chat = ({username, socket}) => {
     const [input, setInput] = useState('')
     const navigate = useNavigate()
 
-    useEffect(() => {
-        socket.on('new-user', data => {
-            console.log(data);
-            setUsers(data.users)
-            setMessages(data.messages)
-        })
-        socket.on('new-message', msgs => {
-            console.log(msgs)
-            setMessages(msgs)
-        })
-    }, [])
+    // useEffect(() => {
+    //     socket.on('new-user', data => {
+    //         console.log(data);
+    //         setUsers(data.users)
+    //         setMessages(data.messages)
+    //     })
+    //     socket.on('new-message', msgs => {
+    //         console.log(msgs)
+    //         setMessages(msgs)
+    //     })
+    // }, [])
+
+    const logoutUser = () => {
+        axios.post('http://localhost:8000/api/logoutUser', {}, {withCredentials:true})
+            .then((res) => {
+                console.log(res)
+                navigate('/')
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
