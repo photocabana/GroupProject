@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({ username, setUsername, socket }) => {
     const navigate = useNavigate()
     const [userLogin, setUserLogin] = useState({
         email:'',
@@ -17,6 +17,8 @@ const Login = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        socket.emit('joined-server', username);
+        navigate('/chat');
         axios.post('http://localhost:8000/api/loginUser', userLogin, {withCredentials:true})
             .then((res) => {
                 console.log(res.data._id)
@@ -32,6 +34,13 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={submitHandler} className='col-4 mx-auto user-form mt-5'>
+                <label>Username</label>
+                    <input 
+                    type="text" 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    />
+                    <button>Join</button>
                 <label className='form-label'>
                 Email:
                 </label>
