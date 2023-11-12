@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Login = ({ username, setUsername, socket }) => {
-    const navigate = useNavigate()
+const Login = (props) => {
+    const { username, setUsername, socket, setLoggedUser } = props
     const [userLogin, setUserLogin] = useState({
         email:'',
         password:''
     })
-
+    
     const [errors, setErrors] = useState("")
+    const navigate = useNavigate()
 
     const onChangeHandler = (e) => {
         setUserLogin({...userLogin, [e.target.name]: e.target.value})
@@ -21,6 +22,7 @@ const Login = ({ username, setUsername, socket }) => {
         navigate('/chat');
         axios.post('http://localhost:8000/api/loginUser', userLogin, {withCredentials:true})
             .then((res) => {
+                setLoggedUser (res.data.user)
                 console.log(res.data._id)
                 navigate('/homepage')
             })
@@ -35,12 +37,13 @@ const Login = ({ username, setUsername, socket }) => {
         <div>
             <form onSubmit={submitHandler} className='col-4 mx-auto user-form mt-5'>
                 <label>Username</label>
-                    <input 
-                    type="text" 
-                    value={username} 
-                    onChange={(e) => setUsername(e.target.value)} 
-                    />
-                    <button>Join</button>
+                <input 
+                type="text" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                />
+                {errors ? <p>{errors}</p> : null}
+
                 <label className='form-label'>
                 Email:
                 </label>

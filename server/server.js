@@ -8,11 +8,12 @@ const path = require('path')
 app.use("/uploads", express.static('uploads'))
 
 //!config connection
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 require('./config/mongoose.config');
 app.use(express.json(), express.urlencoded({extended:true}));
 app.use(cors({credentials:true, origin:'http://localhost:5173'}))
-// app.use(cookieParser())
+app.use(cookieParser())
 
 //!routes connection
 const userRoutes = require("./routes/user.routes")
