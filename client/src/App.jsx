@@ -9,6 +9,9 @@ import Login from './components/Login';
 import Homepage from './components/Homepage'
 import Chat from './components/Chat'
 import Nav from "./components/Nav";
+import CreatePlaylist from "./components/ManipulatePlaylist";
+import ManipulatePlaylist from "./components/ManipulatePlaylist";
+import UsersPlaylists from "./views/UsersPlaylists";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
@@ -29,7 +32,6 @@ function App() {
     <>
       <div className="App">
         <BrowserRouter>
-          <Nav />
           <Routes>
             // This will be music related once created & then the 404 on 18 will go away. 
             {/* <Route
@@ -49,6 +51,8 @@ function App() {
             <Route path='/homepage' element={<Homepage />}/>
             <Route path='/chat' element={<Chat />}/>
             <Route path='/music-player' element={<MusicPlayer />}/>
+            <Route path='/create-playlist' element={<ManipulatePlaylist/>} />
+            <Route path='/users-playlists' element={<UsersPlaylists />}/>
           </Routes>
         </BrowserRouter>
       </div>
