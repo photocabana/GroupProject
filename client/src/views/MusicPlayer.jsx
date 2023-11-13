@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from '../components/Nav'
-import musicPlayerGraphic from '../assets/undraw_music_player_graphic.svg'
+import musicPlayerGraphicNoChat from '../assets/undraw_music_player_graphic_no_chat.svg'
 import '../index.css';
 
 const MusicPlayer = () => {
@@ -23,8 +23,9 @@ const MusicPlayer = () => {
             </div>
         </div>
           <div className="music-player-graphic-container">
-            <img src={musicPlayerGraphic} alt="A music player graphic" />
+            <img src={musicPlayerGraphicNoChat} alt="A music player graphic" />
             <div className="music-player-album-container">Album Artwork will go here</div>
+            <div className="music-player-web-player-container">Web player will go here</div>
           </div>
         </div>
     </div>

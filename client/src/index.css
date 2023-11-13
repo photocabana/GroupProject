@@ -19,9 +19,18 @@ body {
     background: var(--powder-blue);
 }
 
-p, input {
+p, input, td, th {
     font-size: 1.5rem;
 }
+
+th, td {
+    padding: 2%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
 
 a, form {
     font-size: 2rem;
