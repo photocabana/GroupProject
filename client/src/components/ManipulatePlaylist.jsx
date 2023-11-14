@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from './Nav';
 import '../App.css';
+import { Link } from 'react-router-dom'
 
 const ManipulatePlaylist = () => {
   return (
@@ -21,7 +22,10 @@ const ManipulatePlaylist = () => {
                             <label htmlFor="playlist-description">Playlist Description</label>
                             <textarea className='form-control' rows="10" />
                         </div>
-                        <button type="submit">Create</button>
+                        <div className="buttons-holder">
+                            <button type="submit">Create</button>
+                            <Link to="/music-player"><button>Cancel</button></Link>
+                        </div>
                     </form>
                 </div>
             </div>
