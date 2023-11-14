@@ -19,6 +19,10 @@ app.use(cookieParser())
 const userRoutes = require("./routes/user.routes")
 userRoutes(app)
 
+//APIRoutes Connection
+const apiRoutes = require('./routes/apiRoutes')
+apiRoutes(app)
+
 app.listen(port, ()=> console.log("The Server is listening on port " + port));
 
 
