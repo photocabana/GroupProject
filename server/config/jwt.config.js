@@ -18,8 +18,8 @@ module.exports.authenticate = (req, res, next) => {
 module.exports.getLoggedInUser = (req, res) => {
     const decodedJWT = jwt.decode(req.cookies.userToken, {complete: true})
     console.log("As you Wish")
-    console.log(req.cookies.userToken)
-    console.log(decodedJWT)
+    console.log(req.cookies.userToken, "Disappointed")
+    console.log(decodedJWT, "Hello. My name is Inigo Montoya. You killed my father. Prepare to die.")
     if (decodedJWT === null) {
         return res.json({
             user:null

@@ -23,12 +23,12 @@ const Login = (props) => {
         axios.post('http://localhost:8000/api/loginUser', userLogin, {withCredentials:true})
             .then((res) => {
                 setLoggedUser (res.data.user)
-                console.log(res.data._id)
+                console.log(res.data._id, "Inconceivable")
                 navigate('/homepage')
             })
             .catch((err) => {
                 // console.log(err)
-                console.log(err.response.data.message)
+                console.log(err.response.data.message, "BOOOOOOOOOOOOOOOOOOOOO")
                 setErrors(err.response.data.message)
             })
     }

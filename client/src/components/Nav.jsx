@@ -9,11 +9,11 @@ const Nav = ({ setLoggedUser }) => {
       axios.post('http://localhost:8000/api/logoutUser', {}, {withCredentials:true})
           .then((res) => {
               setLoggedUser(null)
-              console.log(res)
+              console.log(res, "No one of consequence")
               navigate("/")
           })
           .catch((err) => {
-              console.log(err)
+              console.log(err, "Truly, you have dizzying intellect")
           })
 
   }

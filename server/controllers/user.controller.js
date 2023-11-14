@@ -26,7 +26,7 @@ module.exports = {
             }
         }
         catch(err) {
-            console.log(err)
+            console.log(err, "So it's to be torture?")
             res.status(400).json({ error:err })
         }
     },
