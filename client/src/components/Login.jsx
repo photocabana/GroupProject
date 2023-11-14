@@ -39,8 +39,10 @@ const Login = (props) => {
                 <label>Username</label>
                 <input 
                 type="text" 
-                value={username} 
-                onChange={(e) => setUsername(e.target.value)} 
+                name="username"
+                className='form-control' 
+                onChange={onChangeHandler} 
+                value={userLogin.username} 
                 />
                 {errors ? <p>{errors}</p> : null}
 

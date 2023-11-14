@@ -78,6 +78,17 @@ module.exports = {
         }
     },
 
+    getUserById: async (req, res) => {
+        const id = req.params.id
+        try{
+            const user = await User.findById(id)
+            res.status(200).json(user)
+        }
+        catch(err){
+            res.status(400).json({error: err})
+        }
+    },
+
     userAuth : async (req, res) => {
         try {
             const token = req.cookies.jwt
