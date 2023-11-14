@@ -3,6 +3,7 @@ import logoOne from '../assets/cantaloupe_music_logo_black.png';
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 
+
 const Nav = ({ setLoggedUser }) => {
   const navigate = useNavigate()
   const logoutUser = () => {
@@ -15,8 +16,8 @@ const Nav = ({ setLoggedUser }) => {
           .catch((err) => {
               console.log(err)
           })
-
   }
+
   return (
     <div className='--nav-bar'>
         <img src={logoOne} alt="Cantaloupe Music Logo" id="--nav-bar-logo"/>
