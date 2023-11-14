@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import React, {useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import "../App.css"
+
 
 const Homepage = (props) => {
-    const { socket, username, setUsername } = props
+    const {loggedUser, socket, username, setUsername } = props
+    const {setLoggedUser} = useState(loggedUser)
     const [users, setUsers] = useState([])
     const [input, setInput] = useState('')
     const [messages, setMessages] = useState([])
@@ -22,17 +25,6 @@ const Homepage = (props) => {
     //     setChatHistory(history)
     //     })
     // }, [])
-
-    const logoutUser = () => {
-        axios.post('http://localhost:8000/api/logoutUser', {}, {withCredentials:true})
-            .then((res) => {
-                console.log(res)
-                navigate('/')
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
 
     const sendMessage = (e) => {
         e.preventDefault()

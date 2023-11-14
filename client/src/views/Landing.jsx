@@ -1,5 +1,7 @@
 import React from 'react'
+import axios from 'axios'
 import logoTwo from '../assets/cantaloupe_music_logo_black_cropped.png';
+import { useNavigate } from 'react-router-dom'
 
 const Landing = () => {
   return (

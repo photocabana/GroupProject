@@ -20,7 +20,8 @@ function App() {
     axios
       .get("http://localhost:8000/api/getLoggedUser", { withCredentials: true })
       .then((res) => {
-        setLoggedUser(res.data.user), console.log(res)
+        setLoggedUser(res.data.user)
+        console.log(res)
       })
       .catch((err) => {
         console.log(err)
@@ -32,27 +33,52 @@ function App() {
     <>
       <div className="App">
         <BrowserRouter>
+
+        <Nav setLoggedUser={setLoggedUser}/>
+
           <Routes>
+
             // This will be music related once created & then the 404 on 18 will go away. 
-            {/* <Route
-                path="/shopInventory"
-                element={
-                  <ShopInventory
-                    allJewelry={allJewelry}
-                    setAllJewelry={setAllJewelry}
-                    loggedUser={loggedUser}
-                    setLoggedUser={setLoggedUser}
-                  />
-                }
-              /> */}
-            <Route path='/' element={<Landing />}/>
-            <Route path='/register' element={<Register />}/>
-            <Route path='/login' element={<Login />}/>
-            <Route path='/homepage' element={<Homepage />}/>
-            <Route path='/chat' element={<Chat />}/>
-            <Route path='/music-player' element={<MusicPlayer />}/>
-            <Route path='/create-playlist' element={<ManipulatePlaylist/>} />
-            <Route path='/users-playlists' element={<UsersPlaylists />}/>
+
+
+            <Route 
+            index element={<Landing 
+            />}/>
+
+            <Route 
+              path="/register" 
+              element={<Register 
+            />} />
+
+            <Route
+              path="/login"
+              element={<Login 
+              setLoggedUser={setLoggedUser} 
+            />}/>
+
+            <Route
+              path="/homepage"
+              element={<Homepage
+              // allJewelry={allJewelry}
+              // setAllJewelry={setAllJewelry}
+              loggedUser={loggedUser}
+              setLoggedUser={setLoggedUser}
+              />}/>
+
+            <Route
+              path="/chat"
+              element={<Chat 
+              loggedUser={loggedUser} 
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/music-player"
+              element={<MusicPlayer
+              loggedUser={loggedUser} 
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
           </Routes>
         </BrowserRouter>
       </div>
