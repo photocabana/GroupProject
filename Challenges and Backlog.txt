@@ -21,3 +21,7 @@ Backlog
 
 (Brittany) Challenge 1 - Learning how to downscale projects when they are too large for the timeframe
     Challenge 2 - Music upload vs. File upload 
+
+(Rindy) Have been working on the Login Reg/Authorizations/socket.io Middleware/FrontEnd/Backend issues - LoggedUser = Authorization
+    - Also dealt with the conflicts re the Commits
+    - console.log references Princess Bride, Robin Hood Men in Tights, & Goonies Quotes
