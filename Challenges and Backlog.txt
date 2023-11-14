@@ -16,3 +16,8 @@ NOTE: more work on responsiveness is needed as the page breaks at less than 800p
 Backlog 
 
 (Anthony)Improve responsiveness for all pages.
+(Brittany) Finish creating Backend playlist model and functions with it, and check that the playlist model is working
+    -Learn how to check playlist function with the array of tracks on Postman
+
+(Brittany) Challenge 1 - Learning how to downscale projects when they are too large for the timeframe
+    Challenge 2 - Music upload vs. File upload 

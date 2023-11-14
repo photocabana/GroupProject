@@ -1,34 +1,88 @@
 const mongodb = require('mongodb');
 const ObjectID = mongodb.ObjectId;
+const multer = require('multer')
+const { Readable} = require('stream')
+const fs = require('fs')
+const Track = require('../models/trackModel')
+
 
 module.exports = {
-    downloadTrack: (req, res) => {
-        try {
-            var trackID = new ObjectID(req.params.trackID);
-        } catch (err){
-            return res.status(400).json({
-                message: "Invalid trackID "
-            });
+    uploadTrack: (req, res) => {
+        if(!req.file){
+            return res.status(400).json({msg: 'No track uploaded'})
         }
-        res.set('content-type', 'audio/mp3');
-        res.set('accept-ranges', 'bytes');
-
-        let bucket = new mongodb.GridFSBucket(req.db, {
-            bucketName: 'tracks'
-        });
-
-        let downloadStream = bucket.openDownloadStream(trackID);
-
-        downloadStream.on('data', (chunk) => {
-            res.write(chunk);
-        });
-
-        downloadStream.on('error', () => {
-            res.sendStatus(404);
+        Track.create({
+            title: req.body.title,
+            track: req.file.path,
+            artist: req.body.artist
         })
-
-        downloadStream.on('end', () => {
-            res.end();
+            .then(newTrack => {
+                console.log("Track was sucessfully uploaded")
+                res.json(newTrack)
+            })
+            .catch(err =>{
+                res.status(400).json(err)
+            })
+    },
+    findAllTracks: (req, res) => {
+        Track.find()
+        .then(allTracks => {
+            // console.log("all tracks grabbed")
+            res.json(allTracks)
         })
+        .catch(err => res.status(400).json(err))
+    },
+    findOneTrack: (req, res) => {
+        Track.findById(req.params.id)
+        .then(oneTrack => {
+            // console.log("Track grabbed")
+            res.json(oneTrack)
+        })
+        .catch(err => res.status(400).json(err))
+    },
+    updateTrack: (req, res) => {
+        const newTrack = req.file;
+        Track.findById(req.params.id)
+            .then(track => {
+                if(!track){
+                    return res.status(404).json({error: 'Track not found!'})
+                }
+                if(newTrack){
+                    //check if an old track exists and delete it
+                    if(track.track){
+                        fs.unlinkSync(track.track)
+                    }
+                    track.track = newTrack.path;
+                }
+
+                track.title = req.body.title;
+                track.artist = req.body.artist
+
+                track.save()
+                    .then(updatedTrack => {
+                        console.log('Track was updated!')
+                        res.json(updatedTrack)
+                    })
+                    .catch(err => res.status(400).json(err));
+            })
+        .catch(err => res.status(400).json(err));
+
+    },
+    deleteTrack: (req, res) => {
+        Track.findById(req.params.id)
+            .then(track => {
+                if(!track){
+                    return res.status(404).json({error: 'Track not found!'})
+                }
+                if(track.track){
+                    fs.unlinkSync(track.track);
+                }
+            Track.findByIdAndDelete(req.params.id)
+                .then(() => {
+                    res.json({deleted: true})
+                })
+                .catch(err => res.status(400).json(err))
+            })
+        .catch(err => res.status(400).json(err));
     }
 }
