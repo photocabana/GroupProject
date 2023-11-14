@@ -30,7 +30,7 @@ const UsersPlaylists = () => {
                                         </div>
                                     </td>
                                     <td>Created At</td>
-                                    <td className="users-playlists-buttons-holder">
+                                    <td className="buttons-holder">
                                         <button>View</button>
                                         <button>Delete</button>
                                     </td>

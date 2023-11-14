@@ -113,6 +113,10 @@ button:active {
     align-items: center;
 }
 
+.card-title {
+    font-size: 2rem;
+    margin: 1rem;
+}
 
 .card-body {
     display: flex;
