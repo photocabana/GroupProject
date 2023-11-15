@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 const ManipulatePlaylist = () => {
   return (
     <div>
-        <Nav />
         <div className="container-1" id="manipulate-playlist-page">
             <div className="card containter-2" id='manipulate-playlist-container'>
                 <div id="manipulate-playlist-heading">
