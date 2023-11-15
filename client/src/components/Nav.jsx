@@ -5,31 +5,31 @@ import axios from "axios"
 
 
 const Nav = ({ setLoggedUser }) => {
-  const navigate = useNavigate()
-  const logoutUser = () => {
-      axios.post('http://localhost:8000/api/logoutUser', {}, {withCredentials:true})
-          .then((res) => {
-              setLoggedUser(null)
-              console.log(res, "No one of consequence")
-              navigate("/")
-          })
-          .catch((err) => {
-              console.log(err, "Truly, you have dizzying intellect")
-          })
-  }
+    const navigate = useNavigate()
+    const logoutUser = () => {
+        axios.post('http://localhost:8000/api/logoutUser', {}, {withCredentials:true})
+            .then((res) => {
+                setLoggedUser(null)
+                console.log(res, "No one of consequence")
+                navigate("/")
+            })
+            .catch((err) => {
+                console.log(err, "Truly, you have dizzying intellect")
+            })
+    }
 
-  return (
-    <div className='--nav-bar'>
-        <img src={logoOne} alt="Cantaloupe Music Logo" id="--nav-bar-logo"/>
-        <div className='--nav-bar-links'>
-            <a href='/'>Home</a>
-            <a href='/music-player'>Music Player</a>
-            <Link to={'/register'}><button className="btn btn-secondary btn-sm">Register</button></Link>
-            <Link to={'/login'}><button className="btn btn-secondary btn-sm">Sign In</button></Link>
-            <button onClick={logoutUser} className="btn btn-secondary btn-sm">Logout</button>
+    return (
+        <div className='--nav-bar'>
+            <img src={logoOne} alt="Cantaloupe Music Logo" id="--nav-bar-logo"/>
+            <div className='--nav-bar-links'>
+                <a href='/'>Home</a>
+                <a href='/music-player'>Music Player</a>
+                <Link to={'/register'}><button className="btn btn-secondary btn-sm">Register</button></Link>
+                <Link to={'/login'}><button className="btn btn-secondary btn-sm">Sign In</button></Link>
+                <button onClick={logoutUser} className="btn btn-secondary btn-sm">Logout</button>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Nav

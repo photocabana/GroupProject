@@ -24,7 +24,7 @@ const Login = (props) => {
             .then((res) => {
                 setLoggedUser (res.data.user)
                 console.log(res.data._id, "Inconceivable")
-                navigate('/homepage')
+                navigate('/music-player')
             })
             .catch((err) => {
                 // console.log(err)

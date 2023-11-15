@@ -59,8 +59,8 @@ function App() {
             <Route
               path="/homepage"
               element={<Homepage
-              // allJewelry={allJewelry}
-              // setAllJewelry={setAllJewelry}
+              allJewelry={allJewelry}
+              setAllJewelry={setAllJewelry}
               loggedUser={loggedUser}
               setLoggedUser={setLoggedUser}
               />}/>
