@@ -24,7 +24,7 @@ const Register = () => {
         axios.post('http://localhost:8000/api/registerUser', user, {withCredentials:true})
             .then((res) => {
                 console.log(res.data, "We're Men, manly men, we're men in tights, we roam around the forest looking for fights")
-                navigate('/homepage')
+                navigate('/music-player')
             })
             .catch((err) => {
                 console.log(err, "Who are you? Are we enemines?")
