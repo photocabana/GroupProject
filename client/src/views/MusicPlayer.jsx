@@ -47,7 +47,7 @@ const MusicPlayer = () => {
 
   return (
     <div>
-        <Nav />
+        {/* <Nav /> */}
         <div className="container-1" id="music-player-container">
           <div className="container-2" id="playlists-container">
             <div className="playlists-operations">

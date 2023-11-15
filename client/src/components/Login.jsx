@@ -18,8 +18,8 @@ const Login = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        socket.emit('joined-server', username);
-        navigate('/chat');
+        // socket.emit('joined-server', username)
+        // navigate('/chat');
         axios.post('http://localhost:8000/api/loginUser', userLogin, {withCredentials:true})
             .then((res) => {
                 setLoggedUser (res.data.user)
