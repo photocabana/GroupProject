@@ -117,6 +117,14 @@ function App() {
               // getAllJewelry={getAllJewelry} 
               />}/>
 
+             <Route
+              path="/createSong"
+              element={<CreateSong
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
           </Routes>
         </BrowserRouter>
       </div>

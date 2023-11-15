@@ -1,9 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Nav from './Nav';
 import '../App.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const ManipulatePlaylist = () => {
+    const [ songName, setSongName ] = useState("")
+    const [ artistName, setArtistName ] = useState("")
+    const [ albumName, setAlbumName ] = useState("")
+    const [ songFile, setSongFile ] = useState()
+
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0]
+        console.log(`heres your file: ${file}`)
+        setSongFile(file)
+        console.log(`heres your songFile: ${songFile}`)
+    }
+
+    const createTrack = (e) => {
+        e.preventDefault()
+
+        if (!songFile) {
+            alert("Please upload a song file")
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("songName", songName);
+        formData.append("artistName", artistName);
+        formData.append("albumName", albumName);
+
+        axios.post("http://localhost:8000/api/createTrack", formData)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
   return (
     <div>
         <div className="container-1" id="manipulate-playlist-page">
@@ -12,22 +47,22 @@ const ManipulatePlaylist = () => {
                     <h2>Add a Song</h2>
                 </div>
                 <div className="card-body">
-                    <form action="">
+                    <form onSubmit={(e) => createTrack(e)}>
                         <div className="form-group">
-                            <label htmlFor="playlist-description">Song Upload</label>
-                            <button>Upload Your Song File</button>
+                            <label htmlFor="song-upload">Song Upload</label>
+                            <input type="file" onChange={handleFileUpload} ></input>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="playlist-name">Song Name</label>
-                            <input type="text" className="form-control" />
+                            <label htmlFor="song-name">Song Name</label>
+                            <input type="text" className="form-control" onChange={(e) => setSongName(e.target.value)}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="playlist-name">Artist Name</label>
-                            <input type="text" className="form-control" />
+                            <label htmlFor="artist-name">Artist Name</label>
+                            <input type="text" className="form-control" onChange={(e) => setArtistName(e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="playlist-description">Album Name</label>
-                            <textarea className='form-control' rows="5" />
+                            <label htmlFor="album-name">Album Name</label>
+                            <textarea className='form-control' rows="5" onChange={(e) => setAlbumName(e.target.value)} />
                         </div>
                         <div className="buttons-holder">
                             <button type="submit">Create</button>
