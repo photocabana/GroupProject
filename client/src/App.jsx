@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import CreatePlaylist from "./components/ManipulatePlaylist";
 import ManipulatePlaylist from "./components/ManipulatePlaylist";
 import UsersPlaylists from "./views/UsersPlaylists";
+import CreateSong from "./components/CreateSong";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
@@ -52,7 +53,6 @@ function App() {
           <Routes>
 
             // This will be music related once created & then the 404 on 18 will go away. 
-
 
             <Route 
             index element={<Landing 
