@@ -59,6 +59,7 @@ function App() {
             <Route path='/music-player' element={<MusicPlayer />}/>
             <Route path='/create-playlist' element={<ManipulatePlaylist/>} />
             <Route path='/users-playlists' element={<UsersPlaylists />}/>
+            <Route path='/create-song' element={<CreateSong />} />
           </Routes>
         </BrowserRouter>
       </div>
