@@ -79,6 +79,9 @@ function App() {
               // getAllJewelry={getAllJewelry} 
               />}/>
 
+            {/* Starting on musicPlayer functionality */}
+            <Route path="/testMusicPlayer/:id" element={<Player />} />
+
           </Routes>
         </BrowserRouter>
       </div>

@@ -25,3 +25,17 @@ Backlog
 (Rindy) Have been working on the Login Reg/Authorizations/socket.io Middleware/FrontEnd/Backend issues - LoggedUser = Authorization
     - Also dealt with the conflicts re the Commits
     - console.log references Princess Bride, Robin Hood Men in Tights, & Goonies Quotes
+
+
+TO DO: 
+    - Backend to Frontend connection (Rindy)
+    - Music Player connection (Brittany)
+    - Playlist feature tied to logged in user (Rindy, Anthony)
+    - Create Playlist feature for going through songs in track order (Brittany)
+    - Image upload for album cover (Brittany)
+
+    -Frontend(get all, create ,etc balh) logic (Anthony)
+    - Adding a dropdown for all songs in create playlist?
+    (Extra!)
+    -Shazam API Pull
+        -Allows for user to search API and download songs to the database
