@@ -29,14 +29,16 @@ const Login = (props) => {
             .catch((err) => {
                 // console.log(err)
                 console.log(err.response.data.message, "BOOOOOOOOOOOOOOOOOOOOO")
-                setErrors(err.response.data.message)
+                setErrors(err.response.data.message, "BOOOOOOOOOOOOOOOOOOOOO")
             })
     }
 
     return (
         <div>
             <form onSubmit={submitHandler} className='col-4 mx-auto user-form mt-5'>
-                <label>Username</label>
+                <label className='form-label'>
+                Username
+                </label>
                 <input 
                 type="text" 
                 name="username"
