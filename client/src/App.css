@@ -129,10 +129,28 @@ border: 3px solid #f7fee7;
         grid-template-columns: none;
     }
 
+    .playlists-heading-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .playlists-heading-buttons button {
+        margin-top: 5%;
+    }
+
     .playlist-song td {
         border-bottom: 1px solid;
         padding: 2.5%;
         width: 95%;
+    }
+
+    .song-buttons-container button{
+        padding: 5%;
+        width: 50% !important;
+    }
+
+    .playlist-card {
+        padding: 5% 0;
     }
 }
 
@@ -208,10 +226,11 @@ border: 3px solid #f7fee7;
     flex-direction: column;
 }
 .song-buttons-container button {
+    text-align: center;
     white-space: normal;
     height: auto;
     width: 100%;
-    margin: 10% 0;
+    margin: 5% 0;
 }
 
 .music-player-graphic-container {

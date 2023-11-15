@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import CreatePlaylist from "./components/ManipulatePlaylist";
 import ManipulatePlaylist from "./components/ManipulatePlaylist";
 import UsersPlaylists from "./views/UsersPlaylists";
+import CreateSong from "./components/CreateSong";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
@@ -39,49 +40,25 @@ function App() {
           <Routes>
 
             // This will be music related once created & then the 404 on 18 will go away. 
-
-
-            <Route 
-            index element={<Landing 
-            />}/>
-
-            <Route 
-              path="/register" 
-              element={<Register 
-            />} />
-
-            <Route
-              path="/login"
-              element={<Login 
-              setLoggedUser={setLoggedUser} 
-            />}/>
-
-            <Route
-              path="/homepage"
-              element={<Homepage
-              // allJewelry={allJewelry}
-              // setAllJewelry={setAllJewelry}
-              loggedUser={loggedUser}
-              setLoggedUser={setLoggedUser}
-              />}/>
-
-            <Route
-              path="/chat"
-              element={<Chat 
-              loggedUser={loggedUser} 
-              // getAllJewelry={getAllJewelry} 
-              />}/>
-
-            <Route
-              path="/music-player"
-              element={<MusicPlayer
-              loggedUser={loggedUser} 
-              // getAllJewelry={getAllJewelry} 
-              />}/>
-
-            {/* Starting on musicPlayer functionality */}
-            <Route path="/testMusicPlayer/:id" element={<Player />} />
-
+            {/* <Route
+                path="/shopInventory"
+                element={
+                  <ShopInventory
+                    allJewelry={allJewelry}
+                    setAllJewelry={setAllJewelry}
+                    loggedUser={loggedUser}
+                    setLoggedUser={setLoggedUser}
+                  />
+                }
+              /> */}
+            <Route path='/' element={<Landing />}/>
+            <Route path='/register' element={<Register />}/>
+            <Route path='/login' element={<Login />}/>
+            <Route path='/homepage' element={<Homepage />}/>
+            <Route path='/chat' element={<Chat />}/>
+            <Route path='/music-player' element={<MusicPlayer />}/>
+            <Route path='/create-playlist' element={<ManipulatePlaylist/>} />
+            <Route path='/users-playlists' element={<UsersPlaylists />}/>
           </Routes>
         </BrowserRouter>
       </div>

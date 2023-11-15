@@ -162,27 +162,17 @@ const MusicPlayer = () => {
 
   return (
     <div>
-    {/* Nav /> */}
       <div className="container-1" id="music-player-container">
         <div className="container-2" id="playlists-container">
           <div className="playlists-operations">
             <div className="card" id="playlists-heading">
               <div className="card-body" id="playlists-create">
                 <div className="card-title">Downloaded Songs</div>
-                <Link to="/create-playlist">
+                <Link to="/create-song">
                   <button type="button" className="btn btn-primary">
                     Add a Song
                   </button>
                 </Link>
-        {/* <Nav /> */}
-        <div className="container-1" id="music-player-container">
-          <div className="container-2" id="playlists-container">
-            <div className="playlists-operations">
-              <div className="card" id="playlists-heading">
-                <div className="card-body" id="playlists-create">
-                  <h2 className="card-title">Create a Playlist</h2>
-                  <Link to="/create-playlist"><button type="button" className="btn btn-primary">Create</button></Link>
-                </div>
               </div>
             </div>
           </div>
