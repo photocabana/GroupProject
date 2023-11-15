@@ -12,6 +12,18 @@ In addition, by ensuring that the #playlists-container and .music-player-graphic
 
 NOTE: more work on responsiveness is needed as the page breaks at less than 800px width.
 
+To do 11/14/2023:
+
+do get all songs
+
+do get all playlists
+
+create song form: upload button, song name, artist name, album name
+
+be able to route to chat page later
+
+utilize the updatePlaylist for the add to active.
+
 
 Backlog 
 
