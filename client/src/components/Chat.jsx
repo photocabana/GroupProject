@@ -27,7 +27,7 @@ const Chat = ({username, socket}) => {
                 navigate('/')
             })
             .catch((err) => {
-                console.log(err);
+                console.log(err, "Get used to Disappointment")
             })
     }
 

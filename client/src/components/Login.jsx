@@ -18,17 +18,17 @@ const Login = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        socket.emit('joined-server', username);
-        navigate('/chat');
+        // socket.emit('joined-server', username)
+        // navigate('/chat');
         axios.post('http://localhost:8000/api/loginUser', userLogin, {withCredentials:true})
             .then((res) => {
                 setLoggedUser (res.data.user)
-                console.log(res.data._id)
-                navigate('/homepage')
+                console.log(res.data._id, "Inconceivable")
+                navigate('/music-player')
             })
             .catch((err) => {
                 // console.log(err)
-                console.log(err.response.data.message)
+                console.log(err.response.data.message, "BOOOOOOOOOOOOOOOOOOOOO")
                 setErrors(err.response.data.message)
             })
     }
@@ -39,8 +39,10 @@ const Login = (props) => {
                 <label>Username</label>
                 <input 
                 type="text" 
-                value={username} 
-                onChange={(e) => setUsername(e.target.value)} 
+                name="username"
+                className='form-control' 
+                onChange={onChangeHandler} 
+                value={userLogin.username} 
                 />
                 {errors ? <p>{errors}</p> : null}
 

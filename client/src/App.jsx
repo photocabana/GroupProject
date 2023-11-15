@@ -21,7 +21,8 @@ function App() {
     axios
       .get("http://localhost:8000/api/getLoggedUser", { withCredentials: true })
       .then((res) => {
-        setLoggedUser(res.data.user), console.log(res)
+        setLoggedUser(res.data.user)
+        console.log(res)
       })
       .catch((err) => {
         console.log(err)
@@ -33,8 +34,11 @@ function App() {
     <>
       <div className="App">
         <BrowserRouter>
-        <Nav />
+
+        <Nav setLoggedUser={setLoggedUser}/>
+
           <Routes>
+
             // This will be music related once created & then the 404 on 18 will go away. 
             {/* <Route
                 path="/shopInventory"
@@ -55,7 +59,6 @@ function App() {
             <Route path='/music-player' element={<MusicPlayer />}/>
             <Route path='/create-playlist' element={<ManipulatePlaylist/>} />
             <Route path='/users-playlists' element={<UsersPlaylists />}/>
-            <Route path='/create-song' element={<CreateSong />} />
           </Routes>
         </BrowserRouter>
       </div>
