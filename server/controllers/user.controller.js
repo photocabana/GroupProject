@@ -26,7 +26,7 @@ module.exports = {
             }
         }
         catch(err) {
-            console.log(err)
+            console.log(err, "So it's to be torture?")
             res.status(400).json({ error:err })
         }
     },
@@ -72,6 +72,17 @@ module.exports = {
             .then(user =>
             res.status(201).json({ message: "User successfully deleted", user })
             )
+        }
+        catch(err){
+            res.status(400).json({error: err})
+        }
+    },
+
+    getUserById: async (req, res) => {
+        const id = req.params.id
+        try{
+            const user = await User.findById(id)
+            res.status(200).json(user)
         }
         catch(err){
             res.status(400).json({error: err})

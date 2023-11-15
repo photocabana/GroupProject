@@ -10,7 +10,6 @@ const Register = () => {
         email: "",
         password: "",
         confirmPassword: ""
-        // role: ""
     })
     
     const [errors, setErrors] = useState({})
@@ -24,11 +23,11 @@ const Register = () => {
         e.preventDefault()
         axios.post('http://localhost:8000/api/registerUser', user, {withCredentials:true})
             .then((res) => {
-                console.log(res.data)
-                navigate('/homepage')
+                console.log(res.data, "We're Men, manly men, we're men in tights, we roam around the forest looking for fights")
+                navigate('/music-player')
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err, "Who are you? Are we enemines?")
                 setErrors(err.response.data.error.errors)
             })
     }
