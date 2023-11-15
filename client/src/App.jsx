@@ -15,6 +15,19 @@ import UsersPlaylists from "./views/UsersPlaylists";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
+  // const [allJewelry, setAllJewelry] = useState([])
+
+  // const getAllJewelry = () => {
+  //   axios
+  //     .get(`http://localhost:8000/api/jewelry`)
+  //     .then((response) => {
+  //       console.log("I am get all jewelry!!!")
+  //       setAllJewelry(response.data.allJewelry)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response)
+  //     })
+  // }
 
   useEffect(() => {
     axios
@@ -43,6 +56,7 @@ function App() {
 
             <Route 
             index element={<Landing 
+              setLoggedUser={setLoggedUser} 
             />}/>
 
             <Route 
@@ -76,6 +90,30 @@ function App() {
               path="/music-player"
               element={<MusicPlayer
               loggedUser={loggedUser} 
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/manipulatePlaylist"
+              element={<ManipulatePlaylist
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/manipulatePlaylist"
+              element={<CreatePlaylist
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/usersPlaylists"
+              element={<UsersPlaylists
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
