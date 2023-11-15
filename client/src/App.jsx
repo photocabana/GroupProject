@@ -16,6 +16,19 @@ import CreateSong from "./components/CreateSong";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
+  // const [allJewelry, setAllJewelry] = useState([])
+
+  // const getAllJewelry = () => {
+  //   axios
+  //     .get(`http://localhost:8000/api/jewelry`)
+  //     .then((response) => {
+  //       console.log("I am get all jewelry!!!")
+  //       setAllJewelry(response.data.allJewelry)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response)
+  //     })
+  // }
 
   useEffect(() => {
     axios
@@ -40,26 +53,78 @@ function App() {
           <Routes>
 
             // This will be music related once created & then the 404 on 18 will go away. 
-            {/* <Route
-                path="/shopInventory"
-                element={
-                  <ShopInventory
-                    allJewelry={allJewelry}
-                    setAllJewelry={setAllJewelry}
-                    loggedUser={loggedUser}
-                    setLoggedUser={setLoggedUser}
-                  />
-                }
-              /> */}
-            <Route path='/' element={<Landing />}/>
-            <Route path='/register' element={<Register />}/>
-            <Route path='/login' element={<Login />}/>
-            <Route path='/homepage' element={<Homepage />}/>
-            <Route path='/chat' element={<Chat />}/>
-            <Route path='/music-player' element={<MusicPlayer />}/>
-            <Route path='/create-playlist' element={<ManipulatePlaylist/>} />
-            <Route path='/users-playlists' element={<UsersPlaylists />}/>
-            <Route path='/create-song' element={<CreateSong />} />
+
+            <Route 
+            index element={<Landing 
+              setLoggedUser={setLoggedUser} 
+            />}/>
+
+            <Route 
+              path="/register" 
+              element={<Register 
+            />} />
+
+            <Route
+              path="/login"
+              element={<Login 
+              setLoggedUser={setLoggedUser} 
+            />}/>
+
+            <Route
+              path="/homepage"
+              element={<Homepage
+              // allJewelry={allJewelry}
+              // setAllJewelry={setAllJewelry}
+              loggedUser={loggedUser}
+              setLoggedUser={setLoggedUser}
+              />}/>
+
+            <Route
+              path="/chat"
+              element={<Chat 
+              loggedUser={loggedUser} 
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/music-player"
+              element={<MusicPlayer
+              loggedUser={loggedUser} 
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/manipulatePlaylist"
+              element={<ManipulatePlaylist
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/manipulatePlaylist"
+              element={<CreatePlaylist
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+            <Route
+              path="/usersPlaylists"
+              element={<UsersPlaylists
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+             <Route
+              path="/createSong"
+              element={<CreateSong
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
           </Routes>
         </BrowserRouter>
       </div>
