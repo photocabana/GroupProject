@@ -169,7 +169,7 @@ const MusicPlayer = () => {
             <div className="card" id="playlists-heading">
               <div className="card-body" id="playlists-create">
                 <div className="card-title">Downloaded Songs</div>
-                <Link to="/create-playlist">
+                <Link to="/create-song">
                   <button type="button" className="btn btn-primary">
                     Add a Song
                   </button>
