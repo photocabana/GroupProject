@@ -14,9 +14,7 @@ const MusicPlayer = () => {
     setActivePlaylist(playlistId);
   }
 
-  // const addSongToActivePlaylist {
-    
-  // }
+  // const addSongToActivePlaylist {}
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/track")
