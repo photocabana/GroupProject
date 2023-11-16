@@ -15,7 +15,6 @@ const ManipulateSong = (props) => {
     const { isEditMode } = props;
     const { songId } = useParams();
 
-
     { isEditMode && 
         useEffect(() => {
             axios.get("http://localhost:8000/api/track/" + songId)
@@ -74,9 +73,9 @@ const ManipulateSong = (props) => {
         formData.append("album", albumName);
         formData.append("track", songFile);
 
-        axios.put("http://localhost:8000/api/track/" + songId, formData) 
+        axios.patch("http://localhost:8000/api/track/" + songId, formData) 
             .then((res) => {
-                console.log(res.data);
+                navigate("/music-player");
             })
             .catch((err) => {
                 console.log(err);
@@ -101,7 +100,7 @@ const ManipulateSong = (props) => {
                         <div className="form-group">
                             <label htmlFor="song-upload">Song Upload</label>
                             <div className="file-input-container">
-                                {songFile && <p>Current File: {songFile.split('\\').pop()}</p>}
+                                {isEditMode && songFile && <p>Current File: {songFile.split('\\').pop()}</p>}
                                 <input type="file" id="song-upload" onChange={handleFileUpload} />
                             </div>
                         </div>

@@ -137,7 +137,7 @@ const MusicPlayer = () => {
           <div className="playlists-operations">
             <div className="card" id="playlists-heading">
               <div className="card-body" id="playlists-create">
-                <div className="card-title">Downloaded Songs</div>
+                <div className="card-title">Uploaded Songs</div>
                 <Link to="/createSong">
                   <button type="button" className="btn btn-primary">
                     Add a Song
