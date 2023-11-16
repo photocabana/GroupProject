@@ -7,4 +7,5 @@ module.exports = (app) => {
     app.post('/api/track/upload', upload.single('track'), trackController.uploadTrack);
     app.patch('/api/track/:id', upload.single('track'), trackController.updateTrack);
     app.delete('/api/track/:id', trackController.deleteTrack);
+    app.get('/api/track/:id/stream', trackController.streamAudio)
 }

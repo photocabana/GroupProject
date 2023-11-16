@@ -6,6 +6,9 @@ const PlaylistSchema = new mongoose.Schema({
     name: {
         type: String
     },
+    description: {
+        type: String
+    },
     tracks: [{
         type: Schema.Types.ObjectId,
         ref: 'Track'

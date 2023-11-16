@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import Nav from '../components/Nav'
+import React, { useState, useEffect } from 'react'
 import musicPlayerGraphicNoChat from '../assets/undraw_music_player_graphic_no_chat.svg'
 import '../index.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MusicPlayer = () => {
   const [activePlaylist, setActivePlaylist] = useState(0) // This will be/set the id of the playlist that is currently being displayed.
+  const [allSongs, setAllSongs] = useState([]);
 
   const displayPlaylistSongs = (playlistId) => {
     // This function will display the playlist-table of the playlist with the id of the playlist that was clicked on.
@@ -16,56 +18,24 @@ const MusicPlayer = () => {
     
   // }
 
-  const testSongs = [
-    {
-      id: 1,
-      songName: "Say So",
-      artistName: "Doja Cat",
-      albumName: "Hot Pink"
-    },
-    {
-      id: 2,
-      songName: "Rush",
-      artistName: "Troye Sivan",
-      albumName: "Something To Give Each Other"
-    },
-    {
-      id: 2,
-      songName: "Rush",
-      artistName: "Troye Sivan",
-      albumName: "Something To Give Each Other"
-    },
-    {
-      id: 2,
-      songName: "Rush",
-      artistName: "Troye Sivan",
-      albumName: "Something To Give Each Other"
-    },
-    {
-      id: 2,
-      songName: "Rush",
-      artistName: "Troye Sivan",
-      albumName: "Something To Give Each Other"
-    },
-    {
-      id: 2,
-      songName: "Rush",
-      artistName: "Troye Sivan",
-      albumName: "Something To Give Each Other"
-    },
-    {
-      id: 2,
-      songName: "Rush",
-      artistName: "Troye Sivan",
-      albumName: "Something To Give Each Other"
-    },
-    {
-      id: 3,
-      songName: "Tala",
-      artistName: "Sarah Geronimo",
-      albumName: "Tala"
-    }
-  ]
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/track")
+      .then((res) => {
+        setAllSongs(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [])
+
+  const deleteSong = (songId) => {
+    axios.delete(`http://localhost:8000/api/track/${songId}`)
+      .then((res) => {
+        setAllSongs(allSongs.filter((song) => song._id !== songId));
+      })
+      .catch((err) => {
+        console.log(err);
+    })}
 
   const testPlaylists = [
     {
@@ -167,8 +137,8 @@ const MusicPlayer = () => {
           <div className="playlists-operations">
             <div className="card" id="playlists-heading">
               <div className="card-body" id="playlists-create">
-                <div className="card-title">Downloaded Songs</div>
-                <Link to="/create-song">
+                <div className="card-title">Uploaded Songs</div>
+                <Link to="/createSong">
                   <button type="button" className="btn btn-primary">
                     Add a Song
                   </button>
@@ -178,28 +148,35 @@ const MusicPlayer = () => {
           </div>
           <div className="playlists-all">
             <table className="playlist-table" id="songs-table">
+              <tbody>
               <tr className="playlist-song-header">
-                <td><i class="fa-solid fa-music"></i>  Song Title</td>
-                <td><i class="fa-solid fa-microphone-lines"></i>  Artist Name</td>
-                <td><i class="fa-solid fa-record-vinyl"></i>  Album Name</td>
+                <td><i className="fa-solid fa-music"></i>  Song Title</td>
+                <td><i className="fa-solid fa-microphone-lines"></i>  Artist Name</td>
+                <td><i className="fa-solid fa-record-vinyl"></i>  Album Name</td>
                 <td></td>
               </tr>
-              {testSongs.map((song) => {
+              {allSongs.map((song) => {
                 return (
-                  <div key={song.id}>
+                  <div key={song._id}>
                     <tr className="playlist-song">
-                      <td><i class="fa-solid fa-music"></i>  {song.songName}</td>
-                      <td><i class="fa-solid fa-microphone-lines"></i>  {song.artistName}</td>
-                      <td><i class="fa-solid fa-record-vinyl"></i>  {song.albumName}</td>
+                      <td><i className="fa-solid fa-music"></i>  {song.title}</td>
+                      <td><i className="fa-solid fa-microphone-lines"></i>  {song.artist}</td>
+                      <td><i className="fa-solid fa-record-vinyl"></i>  {song.album}</td>
                       <td className="song-buttons-container">
-                        <button>Add to Active</button>
-                        <button>Play</button>
-                        <button>Delete</button>
+                        <div>
+                          <button>Add to Active</button>
+                          <button>Play</button>
+                        </div>
+                        <div>
+                          <Link to={`/editSong/${song._id}`}><button>Edit Song</button></Link>
+                          <button onClick={() => deleteSong(song._id)}>Delete</button>
+                        </div>
                       </td>
                     </tr>
                   </div>
                     )}
                 )}
+                </tbody>
             </table>
           </div>
         </div>
@@ -209,7 +186,7 @@ const MusicPlayer = () => {
               <div className="card-body" id="playlists-create">
                 <div className="card-title">Your Playlists</div>
                 <div className="playlists-heading-buttons">
-                  <Link to="/create-playlist">
+                  <Link to="/createPlaylist">
                     <button type="button">
                       Create A Playlist
                     </button>
@@ -231,7 +208,7 @@ const MusicPlayer = () => {
                   <div className="playlist-card">
                     <h5 className="playlist-title">{playlist.playlistName}</h5>
                     { isActivePlaylist ? 
-                      <div className="active-playlist"><i class="fa-solid fa-bolt fa-bounce">Active</i></div>
+                      <div className="active-playlist"><i className="fa-solid fa-bolt fa-bounce">Active</i></div>
                       : null
                     }
                     <button onClick={() => displayPlaylistSongs(playlist.id)} type="button">
@@ -240,23 +217,25 @@ const MusicPlayer = () => {
                   </div>
                   {isActivePlaylist && (
                     <table className="playlist-table">
+                      <tbody>
                       <tr className="playlist-song-header">
-                        <td><i class="fa-solid fa-music"></i>  Song Title</td>
-                        <td><i class="fa-solid fa-microphone-lines"></i>  Artist Name</td>
-                        <td><i class="fa-solid fa-record-vinyl"></i>  Album Name</td>
+                        <td><i className="fa-solid fa-music"></i>  Song Title</td>
+                        <td><i className="fa-solid fa-microphone-lines"></i>  Artist Name</td>
+                        <td><i className="fa-solid fa-record-vinyl"></i>  Album Name</td>
                       </tr>
                       {playlist.songs.map((song) => {
                         return (
                           <tr className="playlist-song" key={song.id}>
-                            <td><i class="fa-solid fa-music"></i>  {song.songName}</td>
-                            <td><i class="fa-solid fa-microphone-lines"></i>  {song.artistName}</td>
-                            <td><i class="fa-solid fa-record-vinyl"></i>  {song.albumName}</td>
+                            <td><i className="fa-solid fa-music"></i>  {song.songName}</td>
+                            <td><i className="fa-solid fa-microphone-lines"></i>  {song.artistName}</td>
+                            <td><i className="fa-solid fa-record-vinyl"></i>  {song.albumName}</td>
                             <td>
                               <button>Play</button>
                             </td>
                           </tr>
                         );
                       })}
+                      </tbody>
                     </table>
                   )}
                 </div>

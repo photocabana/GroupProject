@@ -17,6 +17,17 @@ const storage = multer.diskStorage({
   }
 });
 
+const imageStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.fieldname + path.extname(file.originalname));
+  }
+})
+
+
+//File Filters
 const fileFilter = (req, file, cb) => {
   const allowedFileTypes = ['audio/mpeg'];
   if(allowedFileTypes.includes(file.mimetype)){
@@ -26,16 +37,15 @@ const fileFilter = (req, file, cb) => {
   }
 }
 
+const imageFilter = (req, file, cb) => {
+  const allowedImageTypes = ['image/jpeg', 'image/png']
+  if(allowedImageTypes.includes(file.mimetype)){
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+
 const upload = multer({storage, fileFilter})
-
-module.exports = upload;
-// const uploadMiddleware = multer({ storage, fileFilter }).single('track');
-
-// const bucket = new mongodb.GridFSBucket(db, {
-//   bucketName: 'tracks'
-// });
-
-// module.exports = {
-//   uploadMiddleware,
-//   bucket
-// };
+const imageUpload = multer({imageStorage, imageFilter});
+module.exports = upload, imageUpload;
