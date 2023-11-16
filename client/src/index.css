@@ -36,7 +36,16 @@ a, form {
     font-size: 2rem;
 }
 
-button {
+.errors {
+    color: red;
+    background-color: var(--melon-green);
+    box-shadow: var(--box-shadow-1);
+    padding: 0 1%;
+    margin-top: 5%;
+    font-size: 1.5rem;
+}
+
+button{
   align-items: center;
   appearance: none;
   background-color: var(--orange-web);
