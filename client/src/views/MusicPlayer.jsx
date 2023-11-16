@@ -28,9 +28,7 @@ const MusicPlayer = () => {
     setActivePlaylist(playlistId);
   }
 
-  // const addSongToActivePlaylist {
-    
-  // }
+  // const addSongToActivePlaylist {}
 
   
   useEffect(() => {
@@ -89,64 +87,46 @@ const MusicPlayer = () => {
           albumName: "Tala"
         },
         {
-          id: 1,
-          songName: "Rush",
-          artistName: "Troye Sivan",
-          albumName: "Something To Give Each Other"
+          id: 3,
+          songName: "More Than Words",
+          artistName: "Extreme",
+          albumName: "Extreme"
         },
         {
-          id: 2,
-          songName: "Tala",
-          artistName: "Sarah Geronimo",
-          albumName: "Tala"
+          id: 4,
+          songName: "Can't Help Falling In Love With You",
+          artistName: "Kina Grannis",
+          albumName: "Bedroom Confessions"
         },
         {
-          id: 1,
-          songName: "Rush",
-          artistName: "Troye Sivan",
-          albumName: "Something To Give Each Other"
+          id: 5,
+          songName: "Mr Jones",
+          artistName: "Counting Crows",
+          albumName: "Counting Crows"
         },
         {
-          id: 2,
-          songName: "Tala",
-          artistName: "Sarah Geronimo",
-          albumName: "Tala"
+          id: 6,
+          songName: "Mr Jones Restructured",
+          artistName: "Counting Crows",
+          albumName: "Live @ Howard Stern"
         },
         {
-          id: 1,
-          songName: "Rush",
-          artistName: "Troye Sivan",
-          albumName: "Something To Give Each Other"
+          id: 7,
+          songName: "Chicken Attack",
+          artistName: "Takeo Ischi",
+          albumName: "Single"
         },
         {
-          id: 2,
-          songName: "Tala",
-          artistName: "Sarah Geronimo",
-          albumName: "Tala"
+          id: 8,
+          songName: "At Last",
+          artistName: "Etta",
+          albumName: "Etta"
         },
         {
-          id: 1,
-          songName: "Rush",
-          artistName: "Troye Sivan",
-          albumName: "Something To Give Each Other"
-        },
-        {
-          id: 2,
-          songName: "Tala",
-          artistName: "Sarah Geronimo",
-          albumName: "Tala"
-        },
-        {
-          id: 1,
-          songName: "Rush",
-          artistName: "Troye Sivan",
-          albumName: "Something To Give Each Other"
-        },
-        {
-          id: 2,
-          songName: "Tala",
-          artistName: "Sarah Geronimo",
-          albumName: "Tala"
+          id: 9,
+          songName: "Mic Check",
+          artistName: "Rindy",
+          albumName: "Rin-tin-tin"
         }
       ]
     }

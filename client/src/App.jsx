@@ -19,19 +19,45 @@ function App() {
   const [allSongs, setAllSongs] = useState([])
   const [allPlaylists, setAllPlaylists] = useState([])
 
-  //Songs Pull
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/track/')
-      .then(res => setAllSongs(res.data))
-      .catch(err => console.log(err))
-  }, [])
+  // //Songs Pull
+  // useEffect(() => {
+  //   axios.get('http://localhost:8000/api/track/')
+  //     .then(res => setAllSongs(res.data))
+  //     .catch(err => console.log(err, "Songs Pull App"))
+  // }, [])
 
-  //Playlists Pull
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/playlist')
-      .then(res => setAllPlaylists(res.data))
-      .catch(err => console.log(err))
-  }, [])
+  // //Playlists Pull
+  // useEffect(() => {
+  //   axios.get('http://127.0.0.1:8000/api/playlist')
+  //     .then(res => setAllPlaylists(res.data))
+  //     .catch(err => console.log(err, "Playlists Pull App"))
+  // }, [])
+
+    //Songs Pull
+    useEffect(() => {
+      axios.get('http://localhost:8000/api/track/')
+      .then((res) => {
+        setAllSongs(res.data.user)
+        console.log(res, "Songs Pull App - then")
+      })
+      .catch((err) => {
+        console.log(err, "Songs Pull App")
+      })
+  // getAllJewelry()
+}, [])
+  
+    //Playlists Pull
+    useEffect(() => {
+      axios.get('http://127.0.0.1:8000/api/playlist/')
+      .then((res) => {
+        setAllPlaylists(res.data)
+        console.log(res, "Playlists Pull App - then")
+      })
+      .catch((err) => {
+        console.log(err, "Playlists Pull App")
+      })
+  // getAllJewelry()
+}, [])
   
   // const getAllJewelry = () => {
   //   axios
@@ -44,6 +70,7 @@ function App() {
   //       console.log(err.response)
   //     })
   // }
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/getLoggedUser", { withCredentials: true })
@@ -136,7 +163,7 @@ function App() {
               />}/>
 
             <Route
-              path="/usersPlaylists"
+              path="/users-playlists"
               element={<UsersPlaylists
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
