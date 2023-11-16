@@ -48,7 +48,8 @@ module.exports = {
             title: req.body.title,
             track: req.file.path,
             artist: req.body.artist,
-            album: req.body.album
+            album: req.body.album,
+            // image: req.file.path //! This won't work because the track and the image in this sense are on the same path? 
         })
             .then(newTrack => {
                 console.log("Track was sucessfully uploaded")

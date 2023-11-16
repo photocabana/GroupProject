@@ -15,6 +15,9 @@ const TrackSchema = new mongoose.Schema({
     artist: {
         type: String,
         minlength: [1, "Artist must be at least 1 character long!"]
+    },
+    image: {
+        type: String
     }
 }, {timestamps: true});
 
