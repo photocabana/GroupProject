@@ -3,13 +3,14 @@ import Nav from './Nav';
 import '../App.css';
 import { Link } from 'react-router-dom'
 
-const ManipulatePlaylist = () => {
+const ManipulatePlaylist = (props) => {
+    const { isEditMode } = props;
   return (
     <div>
         <div className="container-1" id="manipulate-playlist-page">
             <div className="card containter-2" id='manipulate-playlist-container'>
                 <div id="manipulate-playlist-heading">
-                    <h2>Create/Edit a Playlist</h2>
+                    {isEditMode ? <h2>Edit Playlist</h2> : <h2>Create Playlist</h2>}
                 </div>
                 <div className="card-body">
                     <form action="">
@@ -22,7 +23,11 @@ const ManipulatePlaylist = () => {
                             <textarea className='form-control' rows="10" />
                         </div>
                         <div className="buttons-holder">
+                            {isEditMode ? 
+                            <button type="submit">Update</button> 
+                            : 
                             <button type="submit">Create</button>
+                            }
                             <Link to="/music-player"><button>Cancel</button></Link>
                         </div>
                     </form>

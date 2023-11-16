@@ -12,6 +12,10 @@ In addition, by ensuring that the #playlists-container and .music-player-graphic
 
 NOTE: more work on responsiveness is needed as the page breaks at less than 800px width.
 
+(Anthony) Challenge 2 - correctly formatting the data for song creation and communication with the back end.
+
+
+
 To do 11/14/2023:
 
 do get all songs
