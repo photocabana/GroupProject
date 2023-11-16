@@ -24,6 +24,9 @@ userRoutes(app)
 const trackRoutes = require('./routes/trackRoutes')
 trackRoutes(app)
 
+const playlistRoutes = require('./routes/playlistRoutes')
+playlistRoutes(app)
+
 app.listen(port, ()=> console.log("The Server is listening on port " + port));
 
 
