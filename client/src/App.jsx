@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import ManipulatePlaylist from "./components/ManipulatePlaylist";
 import UsersPlaylists from "./views/UsersPlaylists";
 import ManipulateSong from "./components/ManipulateSong";
+import Player from "./components/Player/Player";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
@@ -20,7 +21,7 @@ function App() {
 
   //Songs Pull
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/track')
+    axios.get('http://localhost:8000/api/track/')
       .then(res => setAllSongs(res.data))
       .catch(err => console.log(err))
   }, [])
@@ -64,6 +65,12 @@ function App() {
         <Nav setLoggedUser={setLoggedUser}/>
 
           <Routes>
+            //Test Route for Music Player
+            <Route 
+            path="/musicPlayerTest" 
+            element={<Player />}
+            tracks={allSongs}
+            />
 
             // This will be music related once created & then the 404 on 18 will go away. 
 
