@@ -4,7 +4,7 @@ const TrackSchema = new mongoose.Schema({
     title: {
         type: String
     },
-    track: {
+    album: {
         type: String
     },
     artist: {
