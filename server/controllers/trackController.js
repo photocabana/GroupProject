@@ -89,6 +89,18 @@ module.exports = {
                     }
                     track.track = newTrack.path;
                 }
+                    // try this try/catch block if error occurs ?
+                    // if (track.track) {
+                    //     try {
+                    //       fs.unlinkSync(track.track);
+                    //     } catch (err) {
+                    //       if (err.code === 'ENOENT') {
+                    //         console.log('File does not exist');
+                    //       } else {
+                    //         throw err;
+                    //       }
+                    //     }
+                    //   }
 
                 track.title = req.body.title;
                 track.artist = req.body.artist;
@@ -113,6 +125,18 @@ module.exports = {
                 if(track.track){
                     fs.unlinkSync(track.track);
                 }
+                // try this try/catch block if error occurs ?
+                    // if (track.track) {
+                    //     try {
+                    //       fs.unlinkSync(track.track);
+                    //     } catch (err) {
+                    //       if (err.code === 'ENOENT') {
+                    //         console.log('File does not exist');
+                    //       } else {
+                    //         throw err;
+                    //       }
+                    //     }
+                    //   }
             Track.findByIdAndDelete(req.params.id)
                 .then(() => {
                     res.json({deleted: true})

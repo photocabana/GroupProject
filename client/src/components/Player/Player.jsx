@@ -4,22 +4,9 @@ import {Link, useParams} from 'react-router-dom';
 
 
 const Player = (props) => {
-    const [tracks, setTracks] = useState([])
     const {id} = useParams();
-    const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [currentSong, setCurrentSong] = useState()
+    const { currentTrackIndex, setCurrentTrackIndex, tracks, currentSong, setCurrentSong, isPlaying, setIsPlaying, selectTrack, playPause } = props;
 
-    useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/track')
-        .then(res => {
-            // console.log('Got the tracks', res)
-            setTracks(res.data);
-        })
-        .catch(err => {
-            console.log('Error Grabbing Tracks', err)
-        })
-    }, [])
     //Player
 
     const audioElement = useRef(new Audio()); //empty 
@@ -41,16 +28,6 @@ const Player = (props) => {
             audioElement.current.pause()
         }
     }, [isPlaying, currentTrackIndex, tracks]);
-    const PlayPause = () => {
-        setIsPlaying(!isPlaying)
-    }
-
-    const selectTrack = (index) => {
-        setCurrentTrackIndex(index)
-        const selectedTrack = tracks[index]
-        setCurrentSong(selectedTrack)
-        setIsPlaying(true);
-    }
 
     const handlePreviousTrack = () => {
         if (currentTrackIndex !== null) {
@@ -78,12 +55,15 @@ const Player = (props) => {
         }
     };
 
-    const handleTimeUpdate = (event) => {
-        const time = event.target.value;
-        if(audioElement.current){
-            audioElement.current.currentTime = time;
-        }
-    }
+    //Commented out for now as infinite loop bug with this message occurs:
+    // Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+
+    // const handleTimeUpdate = (event) => {
+    //     const time = event.target.value;
+    //     if(audioElement.current){
+    //         audioElement.current.currentTime = time;
+    //     }
+    // }
 
     const handleEnd = () => {
         if(currentTrackIndex !== null){
@@ -99,26 +79,13 @@ const Player = (props) => {
     }
     return (
         <div>
-            <h1>Music Player! </h1>
-            <div>
-                <ul>
-                    {tracks.map((track, index) => (
-                        <li key={track.id}>
-                            <button onClick={() => selectTrack(index)}>
-                                {track.title} - {track.artist}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
             {currentSong && (
                 <div>
-                    <h2>Now Playing: {currentSong.title} - {currentSong.artist}</h2>
                     <audio 
                     controls 
                         ref={audioElement}
                         onEnded={handleEnd}
-                        onTimeUpdate={handleTimeUpdate}
+                        // onTimeUpdate={handleTimeUpdate}
                     >
                         <source src={`http://127.0.0.1:8000/api/track/${currentSong.id}/stream`} type='audio/mp3'/>
                     </audio>
@@ -130,11 +97,11 @@ const Player = (props) => {
                         onChange={handleTimeUpdate}
                     /> */}
                     <div className="playerButtons">
-                        <button onClick={PlayPause}>
+                        {/* <button onClick={playPause}>
                             {isPlaying ? 'Pause' : 'Play'}
-                        </button>
-                        <button onClick={handleNextTrack}>Next</button>
-                        <button onClick={handlePreviousTrack}>Previous</button>
+                        </button> */}
+                        <button onClick={handleNextTrack}><i class="fa-solid fa-play fa-rotate-180"></i></button>
+                        <button onClick={handlePreviousTrack}><i class="fa-solid fa-play"></i></button>
                     </div>
                 </div>
             )}
