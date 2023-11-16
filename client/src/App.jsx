@@ -145,7 +145,7 @@ function App() {
               // getAllJewelry={getAllJewelry} 
               />}/>
 
-             <Route
+            <Route
               path="/createSong"
               element={<ManipulateSong isEditMode={false}
               loggedUser={loggedUser} 
@@ -154,7 +154,7 @@ function App() {
               // getAllJewelry={getAllJewelry} 
               />}/>
 
-             <Route
+            <Route
               path="/editSong/:songId"
               element={<ManipulateSong isEditMode={true}
               loggedUser={loggedUser} 
