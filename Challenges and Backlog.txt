@@ -14,6 +14,29 @@ NOTE: more work on responsiveness is needed as the page breaks at less than 800p
 
 (Anthony) Challenge 2 - correctly formatting the data for song creation and communication with the back end.
 
+Solution - Using a FormData() object to submit the form data to the back end. FormData() is similar to a plain javascript object, albeit it's more equipped to handle file uploads.
+
+Key differences - 
+1. designed to handle file uploads, easily handles <input type="file...">
+2. auto serializes data for form sub to handle file data. standard js objects as serialized as json, which doesn't handle file uploads as conveniently.
+    - Content-Type is auto set to 'multipart/form-data' , vs 'application/json'
+3. you append to FormData to add key/vals
+
+(Anthony) Challenge 3 Addressing crashing that occurs when uploading a new file on edit song - react-dom.development.js:12056 Uncaught TypeError: songFile.split is not a function
+    at ManipulateSong (ManipulateSong.jsx:104:87) 
+
+    Originally was using songFile.split to extract the name of the file from the file path. But this would error because technically, songFile is a file Object...
+
+    Changed it to <p>Current File: {songFile}, which correctly displayed the file name, but if you tried to upload a file, got:
+
+    react-dom.development.js:14887 Uncaught Error: Objects are not valid as a React child (found: [object File]). If you meant to render a collection of children, use an array instead.
+
+    Because you can't directly render an object in JSX. Confusingly, when i console.logged(typeof songFile) on loading of the component, it was a string. For some reason, React was logging songFile as string when logging the state, even though technically songFile is a file Object(?). It fixed the error when uploading a new file when changing {songFile} to {songfile.name} however, nothing would show on the page until you upload a file.
+
+    The solution was to create separate state for the songFile and the songFileName. which allowed the current file mp3 name to display prior to uploading something and no crashing to occur when uploading a new file.
+
+
+
 
 
 To do 11/14/2023:
