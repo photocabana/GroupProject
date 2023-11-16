@@ -1,16 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import musicPlayerGraphicNoChat from '../assets/undraw_music_player_graphic_no_chat.svg'
 import '../index.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import Player from '../components/Player/Player';
 
 const MusicPlayer = () => {
   const [activePlaylist, setActivePlaylist] = useState(0) // This will be/set the id of the playlist that is currently being displayed.
-  const [allSongs, setAllSongs] = useState([]);
+  const [tracks, setTracks] = useState([]);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentSong, setCurrentSong] = useState()
+
+  const playPause = () => {
+    setIsPlaying(!isPlaying)
+}
+
+  const selectTrack = (index) => {
+      setCurrentTrackIndex(index)
+      const selectedTrack = tracks[index]
+      setCurrentSong(selectedTrack)
+      setIsPlaying(true);
+  }
+
 
   const displayPlaylistSongs = (playlistId) => {
-    // This function will display the playlist-table of the playlist with the id of the playlist that was clicked on.
     setActivePlaylist(playlistId);
   }
 
@@ -18,20 +32,28 @@ const MusicPlayer = () => {
     
   // }
 
+  
   useEffect(() => {
     axios.get("http://localhost:8000/api/track")
       .then((res) => {
-        setAllSongs(res.data);
+        setTracks(res.data);
       })
       .catch((err) => {
         console.log(err);
-      })
-  }, [])
+      });
+
+    if (!isPlaying) {
+      document.querySelector(".music-player-album-container").style.background = "var(--nyanza)";
+    } else {
+      document.querySelector(".music-player-album-container").style.background = "linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)";
+      document.querySelector(".music-player-album-container").style.backgroundSize = "400% 400%";
+    }
+  }, [isPlaying]);
 
   const deleteSong = (songId) => {
     axios.delete(`http://localhost:8000/api/track/${songId}`)
       .then((res) => {
-        setAllSongs(allSongs.filter((song) => song._id !== songId));
+        setTracks(tracks.filter((song) => song._id !== songId));
       })
       .catch((err) => {
         console.log(err);
@@ -155,7 +177,7 @@ const MusicPlayer = () => {
                 <td><i className="fa-solid fa-record-vinyl"></i>  Album Name</td>
                 <td></td>
               </tr>
-              {allSongs.map((song) => {
+              {tracks.map((song, index) => {
                 return (
                   <div key={song._id}>
                     <tr className="playlist-song">
@@ -165,7 +187,7 @@ const MusicPlayer = () => {
                       <td className="song-buttons-container">
                         <div>
                           <button>Add to Active</button>
-                          <button>Play</button>
+                          <button onClick={() => selectTrack(index)}>Play</button>
                         </div>
                         <div>
                           <Link to={`/editSong/${song._id}`}><button>Edit Song</button></Link>
@@ -245,8 +267,31 @@ const MusicPlayer = () => {
         </div>
         <div className="music-player-graphic-container">
           <img src={musicPlayerGraphicNoChat} alt="A music player graphic" />
-          <div className="music-player-album-container">Album Artwork will go here</div>
-          <div className="music-player-web-player-container">Web player will go here</div>
+          {/* eventually will be album artwork */}
+          <div className="music-player-album-container">
+            {currentSong ? 
+              <div className='current-played-song-info'>
+                <h2><i className="fa-solid fa-music"></i> {currentSong.title}</h2>
+                <h3><i className="fa-solid fa-microphone-lines"></i> {currentSong.artist}</h3>
+                <h3><i className="fa-solid fa-record-vinyl"></i> {currentSong.album}</h3>
+              </div>
+                :
+                null
+            }
+          </div>
+          <div className="music-player-web-player-container">
+            <Player 
+              tracks={tracks}
+              currentTrackIndex={currentTrackIndex}
+              currentSong={currentSong}
+              isPlaying={isPlaying}
+              setCurrentTrackIndex={setCurrentTrackIndex}
+              setCurrentSong={setCurrentSong}
+              setIsPlaying={setIsPlaying}
+              selectTrack={selectTrack}
+              playPause={playPause}
+            />
+          </div>
         </div>
       </div>
     </div>
