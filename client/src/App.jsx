@@ -15,8 +15,23 @@ import ManipulateSong from "./components/ManipulateSong";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
-  // const [allJewelry, setAllJewelry] = useState([])
+  const [allSongs, setAllSongs] = useState([])
+  const [allPlaylists, setAllPlaylists] = useState([])
 
+  //Songs Pull
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/track')
+      .then(res => setAllSongs(res.data))
+      .catch(err => console.log(err))
+  }, [])
+
+  //Playlists Pull
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/playlist')
+      .then(res => setAllPlaylists(res.data))
+      .catch(err => console.log(err))
+  }, [])
+  
   // const getAllJewelry = () => {
   //   axios
   //     .get(`http://localhost:8000/api/jewelry`)
@@ -28,7 +43,6 @@ function App() {
   //       console.log(err.response)
   //     })
   // }
-
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/getLoggedUser", { withCredentials: true })
@@ -73,6 +87,8 @@ function App() {
               path="/homepage"
               element={<Homepage
               // allJewelry={allJewelry}
+              allSongs={allSongs}
+              setAllSongs={setAllSongs}
               // setAllJewelry={setAllJewelry}
               loggedUser={loggedUser}
               setLoggedUser={setLoggedUser}
@@ -81,14 +97,16 @@ function App() {
             <Route
               path="/chat"
               element={<Chat 
-              loggedUser={loggedUser} 
+              loggedUser={loggedUser}
+              allSongs={allSongs}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
             <Route
               path="/music-player"
               element={<MusicPlayer
-              loggedUser={loggedUser} 
+              loggedUser={loggedUser}
+              allSongs={allSongs}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
@@ -97,6 +115,7 @@ function App() {
               element={<ManipulatePlaylist isEditMode={true}
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
+              allSongs={allSongs}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
@@ -105,6 +124,7 @@ function App() {
               element={<ManipulatePlaylist isEditMode={false}
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
+              allSongs={allSongs}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
@@ -113,6 +133,8 @@ function App() {
               element={<UsersPlaylists
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
+              allPlaylists={allPlaylists}
+              // allSongs={allSongs} needs to be linked to playlists
               // getAllJewelry={getAllJewelry} 
               />}/>
 
@@ -121,6 +143,7 @@ function App() {
               element={<ManipulateSong isEditMode={false}
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
+              allSongs={allSongs}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
@@ -129,6 +152,8 @@ function App() {
               element={<ManipulateSong isEditMode={true}
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
+              allSongs={allSongs}
+              setAllSongs={setAllSongs}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
