@@ -9,7 +9,8 @@ const ManipulateSong = (props) => {
     const [ songName, setSongName ] = useState("");
     const [ artistName, setArtistName ] = useState("");
     const [ albumName, setAlbumName ] = useState("");
-    const [ songFile, setSongFile ] = useState();
+    const [ songFile, setSongFile ] = useState(null);
+    const [ songFileName, setSongFileName ] = useState("");
     const [ errors, setErrors ] = useState([]);
     const navigate = useNavigate();
     const { isEditMode } = props;
@@ -23,6 +24,7 @@ const ManipulateSong = (props) => {
                     setArtistName(res.data.artist);
                     setAlbumName(res.data.album);
                     setSongFile(res.data.track);
+                    setSongFileName(res.data.track);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -33,6 +35,7 @@ const ManipulateSong = (props) => {
     const handleFileUpload = (e) => {
         const file = e.target.files[0]
         setSongFile(file)
+        setSongFileName(e.target.files[0].name)
     }
 
     const createTrack = (e) => {
@@ -79,6 +82,7 @@ const ManipulateSong = (props) => {
             })
             .catch((err) => {
                 console.log(err);
+                setErrors(err.response.data.errors);
             });
     }
 
@@ -100,7 +104,7 @@ const ManipulateSong = (props) => {
                         <div className="form-group">
                             <label htmlFor="song-upload">Song Upload</label>
                             <div className="file-input-container">
-                                {isEditMode && songFile && <p>Current File: {songFile.split('\\').pop()}</p>}
+                                {isEditMode && songFile && <p>Current File: {songFileName}</p>}
                                 <input type="file" id="song-upload" onChange={handleFileUpload} />
                             </div>
                         </div>
