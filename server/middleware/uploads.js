@@ -7,15 +7,30 @@ const mongodb = require('mongodb')
 const mongoose = require('mongoose');
 const { Readable } = require('stream');
 const db = mongoose.connection
-// Set up storage for uploaded files
+
+//A go at handling multiple file storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './music');
+    if(file.fieldname === 'track'){
+      cb(null, './music');
+    } else if (file.fieldname === 'image'){
+      cb(null, './images')
+    }
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.fieldname + path.extname(file.originalname));
   }
-});
+})
+
+// Set up storage for uploaded files
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, './music');
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + '-' + file.fieldname + path.extname(file.originalname));
+//   }
+// });
 
 const imageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -47,5 +62,5 @@ const imageFilter = (req, file, cb) => {
 }
 
 const upload = multer({storage, fileFilter})
-const imageUpload = multer({imageStorage, imageFilter});
+// const imageUpload = multer({imageStorage, imageFilter});
 module.exports = upload, imageUpload;

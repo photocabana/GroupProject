@@ -44,6 +44,12 @@ module.exports = {
         if(!req.file){
             return res.status(400).json({msg: 'No track uploaded'})
         }
+
+        //Track and Album const to make sure they don't go on the same path
+
+        const trackFile = req.file
+        const imageFile = req.files.image
+
         Track.create({
             title: req.body.title,
             track: req.file.path,
