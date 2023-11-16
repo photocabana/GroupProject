@@ -9,10 +9,9 @@ import Login from './components/Login';
 import Homepage from './components/Homepage'
 import Chat from './components/Chat'
 import Nav from "./components/Nav";
-import CreatePlaylist from "./components/ManipulatePlaylist";
 import ManipulatePlaylist from "./components/ManipulatePlaylist";
 import UsersPlaylists from "./views/UsersPlaylists";
-import CreateSong from "./components/CreateSong";
+import ManipulateSong from "./components/ManipulateSong";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState({})
@@ -94,16 +93,16 @@ function App() {
               />}/>
 
             <Route
-              path="/manipulatePlaylist"
-              element={<ManipulatePlaylist
+              path="/editPlaylist/:playlistId"
+              element={<ManipulatePlaylist isEditMode={true}
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
               // getAllJewelry={getAllJewelry} 
               />}/>
 
             <Route
-              path="/manipulatePlaylist"
-              element={<CreatePlaylist
+              path="/createPlaylist"
+              element={<ManipulatePlaylist isEditMode={false}
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
               // getAllJewelry={getAllJewelry} 
@@ -119,7 +118,15 @@ function App() {
 
              <Route
               path="/createSong"
-              element={<CreateSong
+              element={<ManipulateSong isEditMode={false}
+              loggedUser={loggedUser} 
+              setLoggedUser={setLoggedUser}
+              // getAllJewelry={getAllJewelry} 
+              />}/>
+
+             <Route
+              path="/editSong/:songId"
+              element={<ManipulateSong isEditMode={true}
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
               // getAllJewelry={getAllJewelry} 

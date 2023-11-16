@@ -4,11 +4,12 @@ const Track = require('../models/trackModel')
 module.exports = {
     createPlaylist: async (req, res) => {
         try {
-            const {name, tracks} = req.body;
+            const {name, description, tracks} = req.body;
 
             //create new playlist
             const newPlaylist = await Playlist.create({
                 name, 
+                description,
                 tracks: [] //empty array to hold tracks
             });
             //Needs front end to push a collection of tracks: 

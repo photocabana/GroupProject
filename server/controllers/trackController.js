@@ -14,7 +14,8 @@ module.exports = {
         Track.create({
             title: req.body.title,
             track: req.file.path,
-            artist: req.body.artist
+            artist: req.body.artist,
+            album: req.body.album
         })
             .then(newTrack => {
                 console.log("Track was sucessfully uploaded")
@@ -56,7 +57,8 @@ module.exports = {
                 }
 
                 track.title = req.body.title;
-                track.artist = req.body.artist
+                track.artist = req.body.artist;
+                track.album = req.body.album;
 
                 track.save()
                     .then(updatedTrack => {

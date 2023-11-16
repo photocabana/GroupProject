@@ -39,7 +39,7 @@ return (
                 <form onSubmit={submitHandler} action="">
                     <div className="form-group">
                         <label className='form-label'>
-                        Username
+                        Username:
                         </label>
                         <input 
                         type="text" 
