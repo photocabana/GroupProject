@@ -47,6 +47,10 @@
     margin-left: 10%;
 }
 
+.current-played-song-info i {
+    padding: 5%;
+}
+
 .current-played-song-info h2,
 .current-played-song-info h3 {
   width: 100%;
