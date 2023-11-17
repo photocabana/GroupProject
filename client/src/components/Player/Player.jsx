@@ -81,7 +81,7 @@ const Player = (props) => {
         <div>
             {currentSong && (
                 <div>
-                    <audio 
+                    <audio
                     controls 
                         ref={audioElement}
                         onEnded={handleEnd}
@@ -105,6 +105,8 @@ const Player = (props) => {
                     </div>
                 </div>
             )}
+
+
         </div>
     )
 }
