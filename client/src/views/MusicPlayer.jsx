@@ -251,9 +251,9 @@ const MusicPlayer = () => {
           <div className="music-player-album-container">
             {currentSong ? 
               <div className='current-played-song-info'>
-                <h2><i className="fa-solid fa-music"></i> {currentSong.title}</h2>
-                <h3><i className="fa-solid fa-microphone-lines"></i> {currentSong.artist}</h3>
-                <h3><i className="fa-solid fa-record-vinyl"></i> {currentSong.album}</h3>
+                <h2><i className="fa-solid fa-music fa-bounce"></i> {currentSong.title}</h2>
+                <h3><i className="fa-solid fa-microphone-lines fa-bounce"></i> {currentSong.artist}</h3>
+                <h3><i className="fa-solid fa-record-vinyl fa-bounce"></i> {currentSong.album}</h3>
               </div>
                 :
                 null
