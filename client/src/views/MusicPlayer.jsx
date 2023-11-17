@@ -163,7 +163,7 @@ const MusicPlayer = () => {
                   <div key={song._id}>
                     <tr className="playlist-song">
                       <td>
-                        <img src={`http://localhost:8000/${song.image}`} alt="notfound" />
+                        <img className='image-Display' src={`http://localhost:8000/${song.image}`} alt="notfound" />
                       </td>
                       <td><i className="fa-solid fa-music"></i>  {song.title}</td>
                       <td><i className="fa-solid fa-microphone-lines"></i>  {song.artist}</td>
