@@ -48,9 +48,9 @@ module.exports = {
 
         //Track and Album const to make sure they don't go on the same path
 
-        const trackFile = req.files.track[0].path
+        const trackFile = req.files.track.path
         console.log('track', trackFile)
-        const imageFile = req.files.image[0].path
+        const imageFile = req.files.image.path
         console.log('image',imageFile)
 
         Track.create({

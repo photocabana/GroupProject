@@ -11,7 +11,6 @@ const ManipulateSong = (props) => {
     const [ albumName, setAlbumName ] = useState("");
     const [ songFile, setSongFile ] = useState(null);
     const [ songFileName, setSongFileName ] = useState("");
-    const [ imageFileName, setImageFileName ] = useState('');
     const [ errors, setErrors ] = useState([]);
     const navigate = useNavigate();
     const { isEditMode } = props;
@@ -34,17 +33,27 @@ const ManipulateSong = (props) => {
     }
 
     const handleFileUpload = (e) => {
-        if(imageFileName){
-            const imageFile = e.target.files[0]
-            setImageFileName(file)
-            setSongFile(e.target.files[0].name)
-        } else if (songFileName){
-            const file = e.target.files[0]
-            setSongFile(file)
-            setSongFileName(e.target.files[0].name)
-        }
+        const file = e.target.files[0]
+        setSongFile(file)
+        setSongFileName(e.target.files[0].name)
     }
 
+    //!Trying my hand at the Fileupload vs. ImageUpload
+
+    // const [imageFile, setImageFile] = useState(null)
+    // const [imageFileName, setImageFileName] = useState('')
+    // const handleFileUpload = (e) => {
+    //     const file = e.target.files[0]
+    //     if(file){
+    //         if(e.target.name === 'track'){
+    //             setSongFile(file);
+    //             setSongFileName(file.name)
+    //         } else if(e.target.name === 'image'){
+    //             setImageFile(file)
+    //             setImageFileName(file.name)
+    //         }
+    //     }
+    // }
     const createTrack = (e) => {
         e.preventDefault();
 
@@ -112,16 +121,16 @@ const ManipulateSong = (props) => {
                             <label htmlFor="song-upload">Song Upload</label>
                             <div className="file-input-container">
                                 {isEditMode && songFile && <p>Current File: {songFileName}</p>}
-                                <input type="file" id="song-upload" name='track' onChange={handleFileUpload} />
+                                <input type="file" id="song-upload" onChange={handleFileUpload} />
                             </div>
                         </div>
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label htmlFor="song-upload">Album Cover Upload</label>
                             <div className="file-input-container">
-                                {isEditMode && songFile && <p>Current File: {imageFileName}</p>}
-                                <input type="file" id="song-upload" name='image' onChange={handleFileUpload} />
+                                {isEditMode && songFile && <p>Current File: {FileName}</p>}
+                                <input type="file" id="song-upload" onChange={handleFileUpload} />
                             </div>
-                        </div>
+                        </div> */}
                         <div className="form-group">
                             <label htmlFor="song-name">Song Name</label>
                             <input type="text" className="form-control" value={songName} onChange={(e) => setSongName(e.target.value)}/>
