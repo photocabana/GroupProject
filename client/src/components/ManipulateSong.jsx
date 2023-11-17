@@ -35,7 +35,9 @@ const ManipulateSong = (props) => {
 
     const handleFileUpload = (e) => {
         if(imageFileName){
-
+            const imageFile = e.target.files[0]
+            setImageFileName(file)
+            setSongFile(e.target.files[0].name)
         } else if (songFileName){
             const file = e.target.files[0]
             setSongFile(file)
@@ -110,14 +112,14 @@ const ManipulateSong = (props) => {
                             <label htmlFor="song-upload">Song Upload</label>
                             <div className="file-input-container">
                                 {isEditMode && songFile && <p>Current File: {songFileName}</p>}
-                                <input type="file" id="song-upload" onChange={handleFileUpload} />
+                                <input type="file" id="song-upload" name='track' onChange={handleFileUpload} />
                             </div>
                         </div>
                         <div className="form-group">
                             <label htmlFor="song-upload">Album Cover Upload</label>
                             <div className="file-input-container">
                                 {isEditMode && songFile && <p>Current File: {imageFileName}</p>}
-                                <input type="file" id="song-upload" onChange={handleFileUpload} />
+                                <input type="file" id="song-upload" name='image' onChange={handleFileUpload} />
                             </div>
                         </div>
                         <div className="form-group">
