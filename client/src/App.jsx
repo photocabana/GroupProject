@@ -19,20 +19,6 @@ function App() {
   const [allSongs, setAllSongs] = useState([])
   const [allPlaylists, setAllPlaylists] = useState([])
 
-  // //Songs Pull
-  // useEffect(() => {
-  //   axios.get('http://localhost:8000/api/track/')
-  //     .then(res => setAllSongs(res.data))
-  //     .catch(err => console.log(err, "Songs Pull App"))
-  // }, [])
-
-  // //Playlists Pull
-  // useEffect(() => {
-  //   axios.get('http://127.0.0.1:8000/api/playlist')
-  //     .then(res => setAllPlaylists(res.data))
-  //     .catch(err => console.log(err, "Playlists Pull App"))
-  // }, [])
-
     //Songs Pull
     useEffect(() => {
       axios.get('http://localhost:8000/api/track/')
@@ -43,7 +29,7 @@ function App() {
       .catch((err) => {
         console.log(err, "Songs Pull App")
       })
-  // getAllJewelry()
+  setAllSongs()
 }, [])
   
     //Playlists Pull
@@ -56,20 +42,8 @@ function App() {
       .catch((err) => {
         console.log(err, "Playlists Pull App")
       })
-  // getAllJewelry()
+  setAllPlaylists()
 }, [])
-  
-  // const getAllJewelry = () => {
-  //   axios
-  //     .get(`http://localhost:8000/api/jewelry`)
-  //     .then((response) => {
-  //       console.log("I am get all jewelry!!!")
-  //       setAllJewelry(response.data.allJewelry)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response)
-  //     })
-  // }
 
   useEffect(() => {
     axios
@@ -81,7 +55,7 @@ function App() {
       .catch((err) => {
         console.log(err)
       })
-    // getAllJewelry()
+    setAllSongs()
   }, [])
 
   return (
@@ -98,8 +72,6 @@ function App() {
             element={<Player />}
             tracks={allSongs}
             />
-
-            // This will be music related once created & then the 404 on 18 will go away. 
 
             <Route 
             index element={<Landing 
@@ -120,10 +92,10 @@ function App() {
             <Route
               path="/homepage"
               element={<Homepage
-              // allJewelry={allJewelry}
               allSongs={allSongs}
               setAllSongs={setAllSongs}
-              // setAllJewelry={setAllJewelry}
+              allPlaylists={allPlaylists}
+              setAllPlaylists={setAllPlaylists}
               loggedUser={loggedUser}
               setLoggedUser={setLoggedUser}
               />}/>
@@ -133,7 +105,7 @@ function App() {
               element={<Chat 
               loggedUser={loggedUser}
               allSongs={allSongs}
-              // getAllJewelry={getAllJewelry} 
+              // allMessages or chat will go here once created
               />}/>
 
             <Route
@@ -141,7 +113,7 @@ function App() {
               element={<MusicPlayer
               loggedUser={loggedUser}
               allSongs={allSongs}
-              // getAllJewelry={getAllJewelry} 
+              allPlaylists={allPlaylists}
               />}/>
 
             <Route
@@ -150,7 +122,8 @@ function App() {
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
               allSongs={allSongs}
-              // getAllJewelry={getAllJewelry} 
+              allPlaylists={allPlaylists}
+              setAllPlaylists={setAllPlaylists}
               />}/>
 
             <Route
@@ -159,7 +132,8 @@ function App() {
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
               allSongs={allSongs}
-              // getAllJewelry={getAllJewelry} 
+              allPlaylists={allPlaylists}
+              setAllPlaylists={setAllPlaylists}
               />}/>
 
             <Route
@@ -168,8 +142,8 @@ function App() {
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
               allPlaylists={allPlaylists}
+              allSongs={allSongs}
               // allSongs={allSongs} needs to be linked to playlists
-              // getAllJewelry={getAllJewelry} 
               />}/>
 
             <Route
@@ -178,7 +152,7 @@ function App() {
               loggedUser={loggedUser} 
               setLoggedUser={setLoggedUser}
               allSongs={allSongs}
-              // getAllJewelry={getAllJewelry} 
+              setAllSongs={setAllSongs}
               />}/>
 
             <Route
@@ -188,7 +162,6 @@ function App() {
               setLoggedUser={setLoggedUser}
               allSongs={allSongs}
               setAllSongs={setAllSongs}
-              // getAllJewelry={getAllJewelry} 
               />}/>
 
           </Routes>
