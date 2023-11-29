@@ -16,6 +16,7 @@ app.use(express.json(), express.urlencoded({extended:true}));
 app.use(cors({credentials:true, origin:'http://localhost:5173'}))
 app.use(cookieParser())
 
+app.use("/images", express.static('images'))
 //!routes connection
 const userRoutes = require("./routes/user.routes")
 userRoutes(app)

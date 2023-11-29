@@ -41,15 +41,24 @@ module.exports = {
             });
     },
     uploadTrack: (req, res) => {
-        if(!req.file){
+        // console.log(req.files)
+        if(!req.files){
             return res.status(400).json({msg: 'No track uploaded'})
         }
+
+        //Track and Album const to make sure they don't go on the same path
+
+        const trackFile = req.files.track.path
+        console.log('track', trackFile)
+        const imageFile = req.files.image.path
+        console.log('image',imageFile)
+
         Track.create({
             title: req.body.title,
-            track: req.file.path,
+            track: trackFile,
             artist: req.body.artist,
             album: req.body.album,
-            // image: req.file.path //! This won't work because the track and the image in this sense are on the same path? 
+            image: imageFile
         })
             .then(newTrack => {
                 console.log("Track was sucessfully uploaded")
