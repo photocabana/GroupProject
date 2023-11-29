@@ -38,22 +38,6 @@ const ManipulateSong = (props) => {
         setSongFileName(e.target.files[0].name)
     }
 
-    //!Trying my hand at the Fileupload vs. ImageUpload
-
-    // const [imageFile, setImageFile] = useState(null)
-    // const [imageFileName, setImageFileName] = useState('')
-    // const handleFileUpload = (e) => {
-    //     const file = e.target.files[0]
-    //     if(file){
-    //         if(e.target.name === 'track'){
-    //             setSongFile(file);
-    //             setSongFileName(file.name)
-    //         } else if(e.target.name === 'image'){
-    //             setImageFile(file)
-    //             setImageFileName(file.name)
-    //         }
-    //     }
-    // }
     const createTrack = (e) => {
         e.preventDefault();
 
@@ -124,13 +108,6 @@ const ManipulateSong = (props) => {
                                 <input type="file" id="song-upload" onChange={handleFileUpload} />
                             </div>
                         </div>
-                        {/* <div className="form-group">
-                            <label htmlFor="song-upload">Album Cover Upload</label>
-                            <div className="file-input-container">
-                                {isEditMode && songFile && <p>Current File: {FileName}</p>}
-                                <input type="file" id="song-upload" onChange={handleFileUpload} />
-                            </div>
-                        </div> */}
                         <div className="form-group">
                             <label htmlFor="song-name">Song Name</label>
                             <input type="text" className="form-control" value={songName} onChange={(e) => setSongName(e.target.value)}/>
