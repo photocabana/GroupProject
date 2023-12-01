@@ -1,32 +1,66 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import Nav from '../components/Nav';
-import '../App.css';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import '../App.css'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
-const UsersPlaylists = () => {
-    const [activePlaylist, setActivePlaylist] = useState(0) // This will be/set the id of the playlist that is currently being displayed.
+const UsersPlaylists = (props) => {
+// This will be/set the id of the playlist that is currently being displayed.
     const [allSongs, setAllSongs] = useState([])
+    const { loggedUser, setLoggedUser, allPlaylists,setAllPlaylists, isEditMode,  } = props
+    const [activePlaylist, setActivePlaylist] = useState({
+        name: "",
+        description: "",
+        songs: ""
+    }) 
+
+    const {id} = useParams()
+    const navigate = useNavigate()
+    const [errors, setErrors] = useState({})
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/track")
+        axios.get(`http://localhost:8000/api/track/${id}`)
         .then((res) => {
-            setAllSongs(res.data);
+            console.log(res)
+            console.log(res.data.user)
+            setAllSongs(res.data.user)
         })
         .catch((err) => {
-            console.log(err);
+            console.log(err)
         })
     }, [])
 
-    const deleteSong = (songId) => {
-        axios.delete(`http://localhost:8000/api/track/${songId}`)
+    const deletePlaylist = (playlistId) => {
+        axios.delete(`http://localhost:8000/api/playlist/${playlistId}`)
         .then((res) => {
-            setAllSongs(allSongs.filter((song) => song._id !== songId));
+            setAllPlaylists(allPlaylists.filter((playlist) => playlist._id !== playlistId));
         })
         .catch((err) => {
             console.log(err);
     })}
+
+    const deleteSong = (songId) => {
+        axios.delete(`http://localhost:8000/api/track/${songId}`)
+        .then((res) => {
+            console.log(setAllSongs)
+            setAllSongs(allSongs.filter((song) => song._id !== songId))
+        })
+        .catch((err) => {
+            console.log(err)
+    })}
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        axios.patch(`http://localhost:8000/api/editPlaylist/${playlistId}`, playlist)
+        .then((response) => {
+            console.log('Look at me response', response)
+            setAllPlaylists()
+            navigate("/homepage")
+        })
+        .catch((err) => {
+            console.log('look at me', typeof(err), err)
+            setErrors(err.response.data.error.errors)
+        })
+    }
 
     return (
         <div>
