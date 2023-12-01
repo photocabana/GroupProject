@@ -41,16 +41,16 @@ module.exports = {
             });
     },
     uploadTrack: (req, res) => {
-        // console.log(req.files)
+        console.log(req.files)
         if(!req.files){
             return res.status(400).json({msg: 'No track uploaded'})
         }
 
         //Track and Album const to make sure they don't go on the same path
 
-        const trackFile = req.files.track.path
+        const trackFile = req.files.track[0].path
         console.log('track', trackFile)
-        const imageFile = req.files.image.path
+        const imageFile = req.files.image[0].path
         console.log('image',imageFile)
 
         Track.create({

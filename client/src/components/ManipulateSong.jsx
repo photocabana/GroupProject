@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Nav from './Nav';
 import '../App.css';
 import { Link } from 'react-router-dom';
@@ -10,8 +10,12 @@ const ManipulateSong = (props) => {
     const [ artistName, setArtistName ] = useState("");
     const [ albumName, setAlbumName ] = useState("");
     const [ songFile, setSongFile ] = useState(null);
+    const [ albumFile, setAlbumFile ] = useState(null);
+    const [ albumFileName, setAlbumFileName ] = useState("");
     const [ songFileName, setSongFileName ] = useState("");
     const [ errors, setErrors ] = useState([]);
+    const songFileInputRef = useRef();
+    const albumFileInputRef = useRef();
     const navigate = useNavigate();
     const { isEditMode } = props;
     const { songId } = useParams();
@@ -25,6 +29,7 @@ const ManipulateSong = (props) => {
                     setAlbumName(res.data.album);
                     setSongFile(res.data.track);
                     setSongFileName(res.data.track);
+                    setAlbumFileName(res.data.image);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -32,10 +37,28 @@ const ManipulateSong = (props) => {
         }, [])
     }
 
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0]
-        setSongFile(file)
-        setSongFileName(e.target.files[0].name)
+    const handleSongFileUpload = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type === "audio/mpeg") {
+            setSongFile(file);
+            console.log(songFile)
+            setSongFileName(file.name);
+        } else {
+            alert("Please upload an MP3 file");
+            songFileInputRef.current.value = "";
+        }
+    }
+
+    const handleAlbumFileUpload = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.includes("image/")) {
+            setAlbumFile(file);
+            console.log(albumFile)
+            setAlbumFileName(file.name);
+        } else {
+            alert("Please upload an image file");
+            albumFileInputRef.current.value = "";
+        }
     }
 
     const createTrack = (e) => {
@@ -46,12 +69,20 @@ const ManipulateSong = (props) => {
             return;
         }
 
+        if (!albumFile) {
+            alert("Please upload an album file");
+            return;
+        }
+
         const formData = new FormData();
         formData.append("title", songName);
         formData.append("artist", artistName);
         formData.append("album", albumName);
         formData.append("track", songFile);
-
+        formData.append("image", albumFile);
+        for (let pair of formData.entries()) {
+            console.log(pair[0]+ ', '+ pair[1]); 
+        }
         axios.post("http://localhost:8000/api/track/upload", formData)
             .then((res) => {
                 navigate("/music-player");
@@ -75,6 +106,7 @@ const ManipulateSong = (props) => {
         formData.append("artist", artistName);
         formData.append("album", albumName);
         formData.append("track", songFile);
+        formData.append("image", albumFile);
 
         axios.patch("http://localhost:8000/api/track/" + songId, formData) 
             .then((res) => {
@@ -105,7 +137,14 @@ const ManipulateSong = (props) => {
                             <label htmlFor="song-upload">Song Upload</label>
                             <div className="file-input-container">
                                 {isEditMode && songFile && <p>Current File: {songFileName}</p>}
-                                <input type="file" id="song-upload" onChange={handleFileUpload} />
+                                <input type="file" id="song-upload" ref={songFileInputRef} onChange={handleSongFileUpload} />
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="song-upload">Album Artwork</label>
+                            <div className="file-input-container">
+                                {isEditMode && albumFile && <p>Current File: {albumFileName}</p>}
+                                <input type="file" id="song-upload" ref={albumFileInputRef} onChange={handleAlbumFileUpload} />
                             </div>
                         </div>
                         <div className="form-group">
