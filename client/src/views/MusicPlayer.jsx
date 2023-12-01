@@ -152,7 +152,7 @@ const MusicPlayer = () => {
             <table className="playlist-table" id="songs-table">
               <tbody>
               <tr className="playlist-song-header">
-                
+                <td><i><i class="fa-solid fa-palette"></i></i> Album Artwork</td>
                 <td><i className="fa-solid fa-music"></i>  Song Title</td>
                 <td><i className="fa-solid fa-microphone-lines"></i>  Artist Name</td>
                 <td><i className="fa-solid fa-record-vinyl"></i>  Album Name</td>

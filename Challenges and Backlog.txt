@@ -36,6 +36,23 @@ Key differences -
     The solution was to create separate state for the songFile and the songFileName. which allowed the current file mp3 name to display prior to uploading something and no crashing to occur when uploading a new file.
 
 
+(Anthony) Challenge 4 - Leveraging useRef on ManipulateSong to prevent file name from appearing even on uploading an incorrect filetype
+
+    solution ?
+
+    In React, useRef is a hook that allows you to create a "ref" object. This object can be attached to a React element (like an input field), and it allows you to access and interact with that element directly.
+
+    When you create a ref with useRef(), it returns a mutable ref object where .current property is initialized to the passed argument (null if nothing is passed). The returned object will persist for the full lifetime of the component.
+
+    In the context of your code, useRef is being used to create a ref for each of your file input fields:
+
+    These refs are then attached to the input fields:
+
+    Now, songFileInputRef.current will refer to the song file input field, and albumFileInputRef.current will refer to the album file input field.
+
+    In your handleSongFileUpload and handleAlbumFileUpload functions, if the user tries to upload a file of an incorrect type, you're using the ref to reset the value of the input field:
+
+    This directly changes the value of the input field in the DOM, effectively clearing the field. This is a bit of an escape hatch, as it lets you interact with the DOM directly instead of going through React's state system. But in this case, it's a useful way to clear the input field.
 
 
 
