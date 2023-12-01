@@ -19,7 +19,7 @@ const ManipulatePlaylist = (props) => {
             navigate("/login")
             return
         }
-        axios.post(`http://localhost:8000/api/createPlaylist`, playlist)
+        axios.post('http://localhost:8000/api/createPlaylist', playlist)
         .then(response => {
             // allDesigns is the better getter - after the arrow is implied
             // setAllJewelry(allDesigns => [...allDesigns, response.data.newlyCreatedJewelry])
