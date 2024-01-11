@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global */
 :root {
     --orange-web: #f9a826ff;
@@ -151,33 +155,4 @@ form > *, label{
     border-radius: 0.5rem;
     border: 1px solid var(--wenge);
     box-shadow: var(--box-shadow-1);
-}
-
-/* Nav */
-.--nav-bar {
-    background-color: var(--orange-web);
-    height: 10vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    box-shadow: var(--box-shadow-1);
-}
-
-#--nav-bar-logo  {
-    object-fit: cover;
-    width: 12.5%;
-    height: 100%;
-    position: relative;
-    right: 1rem;
-}
-
-.--nav-bar-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.--nav-bar a {
-    margin: 0 1rem;
 }

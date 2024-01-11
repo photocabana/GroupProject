@@ -95,3 +95,9 @@ TO DO:
     (Extra!)
     -Shazam API Pull
         -Allows for user to search API and download songs to the database
+
+1/11/2024
+New Backlog :
+
+Anthony - 
+Revamp Site with Tailwind CSS
