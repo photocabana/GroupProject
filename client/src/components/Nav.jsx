@@ -24,7 +24,7 @@ const Nav = ({ setLoggedUser }) => {
             <div className='--nav-bar-links max-lg:border-t-4 border-t-melonGreen max-lg:p-2 space-x-5'>
                 <a href='/' className='hover:italic hover:underline hover:text-melonGreen'>Home</a><span>|</span>
                 <a href='/music-player' className='hover:italic hover:underline hover:text-melonGreen'>Music Player</a><span>|</span>
-                <Link to={'/register'}><button className="">Register</button></Link>
+                <Link to={'/register'}><button className="btn-secondary">Register</button></Link>
                 <Link to={'/login'}><button className="btn btn-secondary btn-sm">Sign In</button></Link>
                 <button onClick={logoutUser} className="btn btn-secondary btn-sm">Logout</button>
             </div>
