@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global */
 :root {
     --orange-web: #f9a826ff;
@@ -75,6 +79,10 @@ button{
   font-size: 18px;
 }
 
+.btn-secondary {
+    background-color: var(--dodger-blue);
+}
+
 button:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
@@ -115,7 +123,6 @@ button:active {
     box-shadow: var(--box-shadow-1);
     padding: 1rem;
     margin: 1rem;
-    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -151,33 +158,4 @@ form > *, label{
     border-radius: 0.5rem;
     border: 1px solid var(--wenge);
     box-shadow: var(--box-shadow-1);
-}
-
-/* Nav */
-.--nav-bar {
-    background-color: var(--orange-web);
-    height: 10vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    box-shadow: var(--box-shadow-1);
-}
-
-#--nav-bar-logo  {
-    object-fit: cover;
-    width: 12.5%;
-    height: 100%;
-    position: relative;
-    right: 1rem;
-}
-
-.--nav-bar-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.--nav-bar a {
-    margin: 0 1rem;
 }
