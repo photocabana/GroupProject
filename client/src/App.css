@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Global */
 :root {
     --orange-web: #f9a826ff;
@@ -17,12 +21,6 @@
 
 #--landing-container {
     justify-content: center;
-}
-
-#--landing-form {
-    max-width: 350px;
-    margin-top: 2rem;
-    width: 15%;
 }
 
 /* login/reg container */
